@@ -47,23 +47,22 @@ public class LoginController extends Controller{
         user.setUserLogin(inputLogin);
         Message loggedIn = UserUtils.loginUser(user);
         System.out.println(loggedIn.getMessage());
-        if(loggedIn.getFlag()) try { 
+        if(loggedIn.getFlag())  {
+            try {
             user = UserUtils.getUser(inputLogin);
             
             // TODO correct assign user session attribs to session object
-            request.getSession().setAttribute("user", user);
-            
-            
-            response.sendRedirect("user/dashboard.html");
-        } catch (IOException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+            request.getSession().setAttribute("loggedInUser", user);
+
+            response.sendRedirect("user/profile.jsp");
+            } catch (IOException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         else {
             try {
                 request.setAttribute("errorMessage", loggedIn.getMessage());
-                //HttpSession session = request.getSession();
-                
-                
+
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             } catch (ServletException | IOException e) {
                 e.printStackTrace();

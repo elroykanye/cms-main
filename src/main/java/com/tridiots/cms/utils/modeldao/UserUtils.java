@@ -92,16 +92,17 @@ public class UserUtils {
         } ConnectionUtils.closeConnection(conn);
     }
     public static User getUser(String login) {
-        Message  message = findUser(login);
         
         if(findUser(login).getFlag()) {
             conn = ConnectionUtils.openConnection();
             String sql = "SELECT * FROM wtaxy_user WHERE user_name="+login;
-            User user = new User();
+            String query = "SELECT * FROM wtaxy_user WHERE user_name=? OR user_email=?";
             try {
                 assert conn != null;
                 statement = conn.createStatement();
-                resultSet = statement.executeQuery(sql);
+                prepStatement = conn.prepareStatement(query);
+                prepStatement.setString(1, login); prepStatement.setString(2, login);
+                resultSet = prepStatement.executeQuery();
                 if(resultSet.next()) { return new UserMaker(
                         resultSet.getInt("user_id"),
                         resultSet.getString("user_name"),
@@ -270,18 +271,18 @@ public class UserUtils {
         } finally { QueryUtils.closeQueryObject(resultSet); }
         return new Message("User does not exist", false);
     }
-    public static Message findUser(String input) {
+    public static Message findUser(String login) {
         conn = ConnectionUtils.openConnection();
-        String sqlUsername = "SELECT user_name FROM wtaxy_user WHERE wtaxy_user.user_name=?";
-        String sqlEmail = "SELECT user_email FROM wtaxy_user WHERE wtaxy_user.user_email=?";
+        String sqlUsername = "SELECT user_name FROM wtaxy_user WHERE user_name=?";
+        String sqlEmail = "SELECT user_email FROM wtaxy_user WHERE user_email=?";
         try {
             assert conn != null;
             prepStatement = conn.prepareStatement(sqlUsername);
-            prepStatement.setString(1, input);
+            prepStatement.setString(1, login);
             resultSet = prepStatement.executeQuery();
             
             PreparedStatement prepStatement2 = conn.prepareStatement(sqlEmail);
-            prepStatement2.setString(1, input);
+            prepStatement2.setString(1, login);
             ResultSet resultSet2 = prepStatement2.executeQuery();
             
             if(resultSet.next() || resultSet2.next()) return new Message("User exists", true);
