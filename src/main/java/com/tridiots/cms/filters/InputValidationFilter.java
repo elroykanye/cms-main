@@ -92,6 +92,7 @@ public class InputValidationFilter implements Filter {
          */
     }
 
+    // TODO complete the validation and redirects here
     /**
      *
      * @param request The servlet request we are processing
@@ -101,7 +102,6 @@ public class InputValidationFilter implements Filter {
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet error occurs
      */
-    
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain) throws IOException, ServletException { 

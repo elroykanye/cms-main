@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/cms-itangi-kom-a.iml" filepath="$PROJECT_DIR$/cms-itangi-kom-a.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cms-main.iml" filepath="$PROJECT_DIR$/cms-main.iml" />
     </modules>
   </component>
 </project>

@@ -24,8 +24,9 @@ public class SessionUtils {
     
     HttpSession session;
     public class SessionCreator {
+        /*
         public void makeUserSession(HttpSession session, User user) {
-            session.setAttribute(SessionNames.LOGGED_IN_USER, user)
+            session.setAttribute(SessionNames.LOGGED_IN_USER, user);
         }
         public void makeContestantSession(HttpSession session, Contestant contestant) {
             session.setAttribute(SessionNames.LOGGED_IN_CONTESTANT, contestant);
@@ -35,7 +36,7 @@ public class SessionUtils {
         } 
         public void makeAdminSession(HttpSession session, Admin admin) {
             session.setAttribute(SessionNames.LOGGED_IN_ADMIN, admin);
-        }
+        } */
     }
     
     public class SessionDestroyer {

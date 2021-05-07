@@ -6,16 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="cms-itangi-kom-a" />
+        <module name="cms-main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="cms-itangi-kom-a" target="1.8" />
+      <module name="cms-main" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="cms-itangi-kom-a" options="-endorseddirs $PROJECT_DIR$/target/endorsed" />
+      <module name="cms-main" options="-endorseddirs $PROJECT_DIR$/target/endorsed" />
     </option>
   </component>
 </project>
