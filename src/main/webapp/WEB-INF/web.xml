@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+<web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
     <display-name>CMS</display-name>
     <description>Itangi-Kom poetry contest web-app</description>
     <welcome-file-list>
@@ -18,6 +19,7 @@
         </session-timeout>
     </session-config>
     <!-- Filters -->
+
     <filter>
         <filter-name>AuthFilter</filter-name>
         <filter-class>com.tridiots.cms.filters.AuthFilter</filter-class>
