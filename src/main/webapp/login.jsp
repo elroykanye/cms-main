@@ -22,6 +22,13 @@
     <link rel="stylesheet" href="assets/css/styles.min.css">
 </head>
 
+<% 
+String sessionMessage = (String) request.getSession().getAttribute("errorMessage");
+String attribMessage = (String) request.getAttribute("errorMessage");
+%>
+
+
+
 <body class="bg-gradient-primary" style="background: var(--indigo);">
     <div class="container" id="login-container">
         <div class="row justify-content-center">
@@ -47,10 +54,12 @@
                                         <%
                                             
                                             String message = (String) request.getAttribute("errorMessage");
-                                            if(message != null) { %>
-                                            <div class="form-group" style="text-align: center; color: red"><%= message %></div>
-                                        <% }
-                                        %>
+                                            if(sessionMessage != null) { %>
+                                            <div class="form-group" style="text-align: center; color: red"><%= sessionMessage %></div>
+                                        <% } else if(attribMessage != null) { %>
+                                        	<div class="form-group" style="text-align: center; color: red"><%= attribMessage %></div>
+                                        <% } %>
+                                       
                                         <!--EL Ending -->
                                         
                                         <div class="form-group">
