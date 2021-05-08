@@ -21,9 +21,10 @@
     <!-- Filters -->
 
     <filter>
-        <filter-name>AuthFilter</filter-name>
-        <filter-class>com.tridiots.cms.filters.AuthFilter</filter-class>
+        <filter-name>AuthUserFilter</filter-name>
+        <filter-class>com.tridiots.cms.filters.AuthUserFilter</filter-class>
     </filter>
+
     <filter>
         <filter-name>InputValidationFilter</filter-name>
         <filter-class>com.tridiots.cms.filters.InputValidationFilter</filter-class>
@@ -41,7 +42,7 @@
         <servlet-name>LoginController</servlet-name>
     </filter-mapping>
     <filter-mapping>
-        <filter-name>AuthFilter</filter-name>
+        <filter-name>AuthUserFilter</filter-name>
         <url-pattern>/user/*</url-pattern>
     </filter-mapping>
     

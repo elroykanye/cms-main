@@ -17,7 +17,6 @@
     User loggedInUser = (User) request.getSession().getAttribute("loggedInUser");
 
     // redirect condition for session validation
-    loggedInUser = null;
     if(loggedInUser == null) {
         response.sendRedirect(request.getContextPath() + "/login.jsp");
     }
