@@ -16,8 +16,12 @@ public class User {
     private String userGender;
     private Date userDob;
     private boolean userVerified;
+    private int userRole;
+    
 
-    private String userLogin;
+    
+
+	private String userLogin;
 
 
     public String getUserLogin() {
@@ -99,6 +103,13 @@ public class User {
     public void setUserVerified(boolean userVerified) {
         this.userVerified = userVerified;
     }
+    
+    public int getUserRole() {
+		return userRole;
+	}
 
+	public void setUserRole(int userRole) {
+		this.userRole = userRole;
+	}
 
 }
