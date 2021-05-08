@@ -77,6 +77,8 @@ public class UserUtils {
             IO.println(exception);
         } ConnectionUtils.closeConnection(conn);
     }
+    
+    
     public static void deleteAllUsers() {
         conn = ConnectionUtils.openConnection();
         try {
@@ -91,11 +93,12 @@ public class UserUtils {
             QueryUtils.closeQueryObject(resultSet);
         } ConnectionUtils.closeConnection(conn);
     }
+    
+    
     public static User getUser(String login) {
-        
-        if(findUser(login).getFlag()) {
+        Message foundUser = findUser(login);
+        if(foundUser.getFlag()) {
             conn = ConnectionUtils.openConnection();
-            String sql = "SELECT * FROM wtaxy_user WHERE user_name="+login;
             String query = "SELECT * FROM wtaxy_user WHERE user_name=? OR user_email=?";
             try {
                 assert conn != null;
@@ -194,47 +197,29 @@ public class UserUtils {
      * @return AuthMessage instance with corresponding flag.
      */
     public static Message loginUser(User user) {
-        boolean foundLogin = false;
-        boolean foundPass = false;
-
-        conn = ConnectionUtils.openConnection();
-        try {
-            String sql = "SELECT * FROM wtaxy_user";
-            assert conn != null;
-            statement = conn.createStatement();
-            resultSet = statement.executeQuery(sql);
-
-            // check if the username or email exists
-            while(resultSet.next()) {
-                if(checkUE(resultSet, user.getUserLogin())) {
-                    foundLogin = true;
-                    break;
-                }
-            }
-            if(foundLogin) {
-                resultSet = statement.executeQuery(sql);
-                // check if password exists for the said username
-                while(resultSet.next()) {
-                    if(checkPass(resultSet, user.getUserPass())) {
-                        foundPass = true;
-                        break;
-                    }
-                }
-                if(foundPass) {
-                    return new Message("Login and Password correct", true);
-                } else {
-                    return new Message("Password wrong", false);
-                }
-            } else {
-                return new Message("Login incorrect", false);
-            }
-
-        } catch (SQLException exception) {
-            IO.println(exception);
-        } finally {
-            QueryUtils.closeQueryObjects(statement, resultSet);
-        } ConnectionUtils.closeConnection(conn);
-        return new Message("Error", false);
+        Message foundUser = findUser(user.getUserLogin());
+        if(foundUser.getFlag()) {
+        	String sql = "SELECT user_pass FROM wtaxy_user WHERE user_name=? OR user_email=?";
+        	
+        	try {
+        		prepStatement = conn.prepareStatement(sql);
+            	prepStatement.setString(1, user.getUserLogin());
+				prepStatement.setString(2, user.getUserLogin());
+				resultSet = prepStatement.executeQuery();
+				if(resultSet.next()) {
+					if(resultSet.getString("user_pass").equals(user.getUserPass())) 
+						return new Message("Login successful", true);
+				} else return new Message("Wrong Password", false);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				QueryUtils.closeQueryObjects(prepStatement, resultSet);
+				ConnectionUtils.closeConnection(conn);
+			} 
+        } else {
+        	return new Message("User not found", false);
+        } return new Message("Login unsuccessful",false);
     }
 
     public static Message recoverUser(String login) {
@@ -260,6 +245,7 @@ public class UserUtils {
         ConnectionUtils.closeConnection(conn);
         return new Message("Account not exist", false);
     }
+    
 
     public static Message findUser(int uid) {
         conn = ConnectionUtils.openConnection();
@@ -271,22 +257,19 @@ public class UserUtils {
         } finally { QueryUtils.closeQueryObject(resultSet); }
         return new Message("User does not exist", false);
     }
+    
+    
     public static Message findUser(String login) {
         conn = ConnectionUtils.openConnection();
-        String sqlUsername = "SELECT user_name FROM wtaxy_user WHERE user_name=?";
-        String sqlEmail = "SELECT user_email FROM wtaxy_user WHERE user_email=?";
+        String sqlUsername = "SELECT user_name,user_email FROM wtaxy_user WHERE user_name=? OR user_email=?";
         try {
             assert conn != null;
             prepStatement = conn.prepareStatement(sqlUsername);
             prepStatement.setString(1, login);
+            prepStatement.setString(2, login);
             resultSet = prepStatement.executeQuery();
             
-            PreparedStatement prepStatement2 = conn.prepareStatement(sqlEmail);
-            prepStatement2.setString(1, login);
-            ResultSet resultSet2 = prepStatement2.executeQuery();
-            
-            if(resultSet.next() || resultSet2.next()) return new Message("User exists", true);
-            QueryUtils.closeQueryObjects(prepStatement2, resultSet2);
+            if(resultSet.next()) return new Message("User exists sah mon frere", true);
         } catch (SQLException exception) {
             IO.println(exception);
         } finally {
