@@ -48,6 +48,23 @@
                     <li class="nav-item"><a class="nav-link" href="../user/users.html"><i class="fa fa-users"></i><span>Users</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="../user/submissions.html"><i class="fas fa-table"></i><span>Submissions</span></a></li>
                     <li class="nav-item"><a class="nav-link"><i class="fa fa-sign-out"></i><span>Sign Out</span></a></li>
+                    
+                    <!-- Form Button for logout -->
+                    
+                    <li class="nav-item">
+                    <form action="<%= request.getContextPath() +"/logout" %>" method="post">
+                    	<a class="nav-link">
+                    		<i class="fa fa-sign-out"></i>
+                    		
+                    		<input type="submit" name=äction value=logout>
+                    		
+                    	</a>
+                    </form>
+                    </li>
+                    
+                    
+                    
+                    
                     <li class="nav-item"></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>

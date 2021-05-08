@@ -28,6 +28,7 @@ public class AuthUserFilter extends AuthFilter{
                 //httpResponse.sendRedirect(httpRequest.getContextPath() + "/user/profile.jsp");
             } else {
                 IO.println("Session invalid");
+                httpRequest.getSession().setAttribute("errorMessage", "You have to be logged in first!");
                 httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
             }
         }

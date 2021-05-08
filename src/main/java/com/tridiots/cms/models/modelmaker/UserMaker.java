@@ -21,8 +21,6 @@ public class UserMaker {
         user.setUserVerified(userVerified);
     }
 
-    
-
     public User getUser() {
         return user;
     }

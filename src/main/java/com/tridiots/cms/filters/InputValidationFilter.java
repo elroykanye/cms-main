@@ -110,7 +110,7 @@ public class InputValidationFilter implements Filter {
         }
         
         doBeforeProcessing(request, response);
-        
+        /*
         String requestSource = request.getParameter("requestSource"); 
         if(requestSource != null) {
             if(requestSource.equals("login.jsp")) {
@@ -120,7 +120,7 @@ public class InputValidationFilter implements Filter {
             }
         }
         
-        
+        */
         /****/
         
         /***/

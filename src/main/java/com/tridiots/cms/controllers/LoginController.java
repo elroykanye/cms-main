@@ -20,7 +20,12 @@ import javax.servlet.http.HttpSession;
  * The service() method forwards control to the corresponding method handler
  */
 public class LoginController extends Controller{
-    @Override
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
     protected void service(HttpServletRequest request, HttpServletResponse response) {
         if(request.getMethod().toLowerCase(Locale.ROOT).equals("post")) {
             doPost(request, response);
@@ -49,21 +54,19 @@ public class LoginController extends Controller{
         System.out.println(loggedIn.getMessage());
         if(loggedIn.getFlag())  {
             try {
-            user = UserUtils.getUser(inputLogin);
-            
-            // TODO correct assign user session attribs to session object
-            request.getSession().setAttribute("loggedInUser", user);
+            	user = UserUtils.getUser(inputLogin);
+            	// added correct assign user session attribs to session object
+            	request.getSession().setAttribute("loggedInUser", user);
 
-            response.sendRedirect("user/profile.jsp");
+            	response.sendRedirect(request.getContextPath() + "/user/profile.jsp");
             } catch (IOException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        else {
+        } else {
             try {
                 request.setAttribute("errorMessage", loggedIn.getMessage());
 
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                request.getRequestDispatcher( request.getContextPath() + "login.jsp").forward(request, response);
             } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
