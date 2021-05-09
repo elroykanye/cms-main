@@ -10,7 +10,7 @@ public class UserMaker {
                 String userName, String userEmail,
                 String userFirstName, String userLastName,
                 String userGender, Date userDob,
-                boolean userVerified) {
+                boolean userVerified, int userRole) {
         user.setUserId(userId);
         user.setUserName(userName);
         user.setUserEmail(userEmail);
@@ -19,6 +19,7 @@ public class UserMaker {
         user.setUserGender(userGender);
         user.setUserDob(userDob);
         user.setUserVerified(userVerified);
+        user.setUserRole(userRole);
     }
 
     public User getUser() {

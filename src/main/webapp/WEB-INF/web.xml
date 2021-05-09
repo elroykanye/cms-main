@@ -7,12 +7,12 @@
         <welcome-file>index.html</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-    
+    <!--
   	<error-page>
 		<error-code>404</error-code>
 		<location>/error/404.html</location>
   	</error-page>
-    
+    -->
     <session-config>
         <session-timeout>
             30
@@ -25,15 +25,15 @@
     </filter>
     <filter>
     	<filter-name>AuthContestantFilter</filter-name>
-    	<filter-class>com.tridiots.cms.filters.AuthUserFilter.AuthContestantFilter</filter-class>
+    	<filter-class>com.tridiots.cms.filters.authuser.ContestantFilter</filter-class>
     </filter>
     <filter>
     	<filter-name>AuthJudgeFilter</filter-name>
-    	<filter-class>com.tridiots.cms.filters.AuthUserFilter.AuthJudgeFilter</filter-class>
+    	<filter-class>com.tridiots.cms.filters.authuser.JudgeFilter</filter-class>
     </filter>
     <filter>
     	<filter-name>AuthAdminFilter</filter-name>
-    	<filter-class>com.tridiots.cms.filters.AuthUserFilter.AuthAdmintFilter</filter-class>
+    	<filter-class>com.tridiots.cms.filters.authuser.AdminFilter</filter-class>
     </filter>
     <filter>
         <filter-name>InputValidationFilter</filter-name>

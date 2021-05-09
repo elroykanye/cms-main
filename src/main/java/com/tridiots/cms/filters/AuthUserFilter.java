@@ -11,6 +11,16 @@ import com.tridiots.cms.shortcuts.IO;
 import java.io.IOException;
 
 public class AuthUserFilter implements Filter {
+	public AuthUserFilter() {}
+	
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		
+	}
+	@Override
+	public void destroy() {
+		
+	}
 
 
     @Override
@@ -18,8 +28,8 @@ public class AuthUserFilter implements Filter {
     	HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
 		HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
 		
-		int adminRoleCode = 111;
-		if(roleSessionChecker(httpRequest, adminRoleCode)) {
+		int userRoleCode = 444;
+		if(roleSessionChecker(httpRequest, userRoleCode)) {
 			IO.println("Session valid");
             filterChain.doFilter(httpRequest, httpResponse);
 		} else {
@@ -31,65 +41,7 @@ public class AuthUserFilter implements Filter {
 
     }
     
-    public class AuthAdminFilter implements Filter {
-
-		@Override
-		public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-				throws IOException, ServletException {
-			HttpServletRequest httpRequest = (HttpServletRequest) request;
-    		HttpServletResponse httpResponse = (HttpServletResponse) response;
-    		
-    		int adminRoleCode = 111;
-    		if(roleSessionChecker(httpRequest, adminRoleCode)) {
-    			IO.println("Admin session valid");
-    			chain.doFilter(httpRequest, httpResponse); 
-    		} else {
-    			IO.println("Admin session invalid");
-    			httpResponse.sendRedirect(httpRequest.getContextPath() + "/error/403.html");
-    		}
-			
-		}
-    	
-    }
-    
-    public class AuthJudgeFilter implements Filter {
-    	@Override
-		public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-				throws IOException, ServletException {
-    		HttpServletRequest httpRequest = (HttpServletRequest) request;
-    		HttpServletResponse httpResponse = (HttpServletResponse) response;
-    		
-    		int judgeRoleCode = 222;
-    		if(roleSessionChecker(httpRequest, judgeRoleCode)) {
-    			IO.println("Judge session valid");
-    			chain.doFilter(httpRequest, httpResponse); 
-    		} else {
-    			IO.println("Judge session invalid");
-    			httpResponse.sendRedirect(httpRequest.getContextPath() + "/error/403.html");
-    		}
-		}
-    }
-    
-    public class AuthContestantFilter implements Filter {
-    	@Override
-		public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-				throws IOException, ServletException {
-    		HttpServletRequest httpRequest = (HttpServletRequest) request;
-    		HttpServletResponse httpResponse = (HttpServletResponse) response;
-    		
-    		int contestantRoleCode = 333;
-    		if(roleSessionChecker(httpRequest, contestantRoleCode)) {
-    			IO.println("COntestant session valid");
-    			chain.doFilter(httpRequest, httpResponse);
-    		} else {
-    			IO.println("Contestant session invalid");
-    			httpResponse.sendRedirect(httpRequest.getContextPath() + "/error/403.html");
-    		}
-			
-		}
-    }
-    
-    public boolean roleSessionChecker(HttpServletRequest httpRequest, int roleCode) {
+    public static boolean roleSessionChecker(HttpServletRequest httpRequest, int roleCode) {
     	HttpSession session = httpRequest.getSession();
     	
     	if(session != null) {

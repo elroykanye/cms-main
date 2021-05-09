@@ -114,7 +114,8 @@ public class UserUtils {
                         resultSet.getString("user_last_name"),
                         resultSet.getString("user_gender"),
                         resultSet.getDate("user_dob"),
-                        resultSet.getBoolean("user_verified")
+                        resultSet.getBoolean("user_verified"),
+                        resultSet.getInt("user_role")
                     ).getUser();
                 } 
             } catch(SQLException exception) {
@@ -177,7 +178,8 @@ public class UserUtils {
                         resultSet.getString("user_last_name"),
                         resultSet.getString("user_gender"),
                         resultSet.getDate("user_dob"),
-                        resultSet.getBoolean("user_verified")
+                        resultSet.getBoolean("user_verified"),
+                        resultSet.getInt("user_role")
                         ).getUser()
                 );
             }
@@ -280,13 +282,7 @@ public class UserUtils {
 
     // Helper Functions
     /***************************************************************************************/
-    private static boolean checkUE(ResultSet rs, String ue) throws SQLException {
-        return rs.getString("user_name").equals(ue)
-                || rs.getString("user_email").equals(ue);
-    }
-    private static boolean checkPass(ResultSet rs, String pass) throws SQLException {
-        return rs.getString("user_pass").equals(pass);
-    }
+    
     private static String produceRandom() {
         int min = 10000000; int max = 99999999;
         return String.valueOf((int) ((Math.random() * (max - min)) + min));

@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.http.HttpSession;
 
 /**
  * author Tridiots
@@ -66,7 +65,7 @@ public class LoginController extends Controller{
             try {
                 request.setAttribute("errorMessage", loggedIn.getMessage());
 
-                request.getRequestDispatcher( request.getContextPath() + "login.jsp").forward(request, response);
+                request.getRequestDispatcher( request.getContextPath() + "/login.jsp").forward(request, response);
             } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
