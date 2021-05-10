@@ -4,6 +4,7 @@ public class Contestant extends User{
     private int contestantId;
     private int userId;
     private String contestantImageDir;
+    private boolean contestantVerified;
 
     public int getContestantId() {
         return contestantId;
