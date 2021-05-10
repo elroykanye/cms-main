@@ -22,13 +22,14 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-user"></i><span>Profile</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="/user/apply-contest.html"><i class="fa fa-play"></i><span>Apply for Contest</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-play"></i><span>Apply for Contest</span></a></li>
                     <li class="nav-item">
                         <div style="text-align: center;">
                             <form class="form-inline" style="padding:8px;"><button class="btn btn-primary" type="submit" style="margin: auto;background: rgb(255,255,255);color: var(--purple);" name="action" value="Sign Out"><i class="fa fa-sign-out"></i>&nbsp;Sign Out</button></form>
                         </div>
                     </li>
+                    <li class="nav-item"></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
@@ -132,135 +133,34 @@
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Profile</h3>
-                    <div class="row mb-3">
-                        <div class="col-lg-4">
-                            <div class="card mb-3">
-                                <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="dogs/image2.jpeg" width="160" height="160">
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="button" style="background: var(--purple);">Change Photo</button></div>
-                                </div>
-                            </div>
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="text-primary font-weight-bold m-0">Progress</h6>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="small font-weight-bold">Account Setup<span class="float-right">20%</span></h4>
-                                    <div class="progress progress-sm mb-3">
-                                        <div class="progress-bar bg-danger" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"><span class="sr-only">20%</span></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Submissions Completed<span class="float-right">40%</span></h4>
-                                    <div class="progress progress-sm mb-3" style="background: rgb(234, 236, 244);">
-                                        <div class="progress-bar bg-warning" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"><span class="sr-only">40%</span></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Submission Time Elapsed<span class="float-right">60%</span></h4>
-                                    <div class="progress progress-sm mb-3" style="background: rgb(234,236,244);color: var(--purple);">
-                                        <div class="progress-bar bg-primary" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"><span class="sr-only">60%</span></div>
-                                    </div>
-                                </div>
-                            </div>
+                    <h3 class="text-dark mb-4">Apply for the Contest</h3>
+                    <section class="apply-content-section">
+                        <div>
+                            <p class="text-center" style="font-weight: 100;"><br><strong>Thank you for taking the time to apply to be in Itangi-Kom Poetry Contest.&nbsp;</strong><br><strong>Complete the form below and your application will be verified.</strong><br><br></p>
                         </div>
-                        <div class="col-lg-8">
-                            <div class="row mb-3 d-none">
+                        <div>
+                            <hr style="border-width: 4px;">
+                        </div>
+                        <div class="form-container">
+                            <div class="row">
                                 <div class="col">
-                                    <div class="card text-white bg-primary shadow">
-                                        <div class="card-body">
-                                            <div class="row mb-2">
-                                                <div class="col">
-                                                    <p class="m-0">Peformance</p>
-                                                    <p class="m-0"><strong>65.2%</strong></p>
-                                                </div>
-                                                <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
-                                            </div>
-                                            <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
-                                        </div>
-                                    </div>
+                                    <div class="form-group"><label class="field-label-appl">First Name</label><input type="text" class="form-control form-control-user text-input-round-border text-input-appl" name="first-name" value="John"></div>
                                 </div>
                                 <div class="col">
-                                    <div class="card text-white bg-success shadow">
-                                        <div class="card-body">
-                                            <div class="row mb-2">
-                                                <div class="col">
-                                                    <p class="m-0">Peformance</p>
-                                                    <p class="m-0"><strong>65.2%</strong></p>
-                                                </div>
-                                                <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
-                                            </div>
-                                            <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
-                                        </div>
-                                    </div>
+                                    <div class="form-group"><label class="field-label-appl">Last Name</label><input type="text" class="form-control form-control-user text-input-round-border text-input-appl" name="first-name" value="Doe"></div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
-                                    <div class="card shadow mb-3">
-                                        <div class="card-header py-3">
-                                            <p class="text-primary m-0 font-weight-bold">User Settings</p>
-                                        </div>
-                                        <div class="card-body">
-                                            <form>
-                                                <div class="form-row">
-                                                    <div class="col">
-                                                        <div class="form-group"><label for="username"><strong>Username</strong></label><input class="form-control" type="text" id="username" placeholder="user.name" name="username"></div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="form-group"><label for="email"><strong>Email Address</strong></label><input class="form-control" type="email" id="email" placeholder="user@example.com" name="email"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="col">
-                                                        <div class="form-group"><label for="first_name"><strong>First Name</strong></label><input class="form-control" type="text" id="first_name" placeholder="John" name="first_name"></div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="form-group"><label for="last_name"><strong>Last Name</strong></label><input class="form-control" type="text" id="last_name" placeholder="Doe" name="last_name"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group"><label for="address"><strong>Address</strong></label><input class="form-control" type="text" id="address" placeholder="Sunset Blvd, 38" name="address"></div>
-                                                <div class="form-row">
-                                                    <div class="col">
-                                                        <div class="form-group"><label for="city"><strong>City</strong></label><input class="form-control" type="text" id="city" placeholder="Los Angeles" name="city"></div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="form-group"><label for="country"><strong>Country</strong></label><input class="form-control" type="text" id="country" placeholder="USA" name="country"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit" style="background: var(--purple);">Save&nbsp;Settings</button></div>
-                                            </form>
-                                        </div>
-                                    </div>
+                                <div class="col" style="text-align: center;">
+                                    <p style="padding-top:16px;padding-bottom:16px;">By the clicking the "Confirm button, you agree to the terms and conditions of this competition.</p>
                                 </div>
                             </div>
+                            <div style="text-align: center;"><button class="btn btn-primary btn-user btn-confirm-appl" type="button" style="border-style: none;border-radius: 32px;">Confirm</button></div>
                         </div>
-                    </div>
-                    <div class="card shadow mb-5">
-                        <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">Extra Settings</p>
+                        <div>
+                            <hr style="border-width: 4px;">
                         </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <form>
-                                        <div class="form-group"><label for="signature"><strong>Message</strong><br></label><textarea class="form-control" id="signature" rows="2" name="signature" placeholder="Send message to admin: error or query"></textarea></div>
-                                        <div class="form-group"><button class="btn btn-primary btn-sm" type="submit" style="color: var(--white);background: var(--purple);">Send</button></div>
-                                    </form>
-                                </div>
-                                <div class="col">
-                                    <form>
-                                        <div class="form-group"><label for="address"><strong>Reset Password</strong></label></div>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <div class="form-group"><input class="form-control" type="text" id="old-password" placeholder="Old Password" name="city"></div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group"><input class="form-control" type="text" id="new-password" placeholder="New Password" name="country"></div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group"><button class="btn btn-primary btn-sm" type="submit" style="background: var(--purple);">Save&nbsp;Settings</button></div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </section>
                 </div>
             </div>
             <footer class="bg-white sticky-footer">

@@ -2,11 +2,18 @@ package com.tridiots.cms.controllers;
 
 import com.tridiots.cms.message.Message;
 import com.tridiots.cms.models.User;
+import com.tridiots.cms.shortcuts.IO;
 import com.tridiots.cms.utils.modeldao.UserUtils;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,8 +71,17 @@ public class LoginController extends Controller{
         } else {
             try {
                 request.setAttribute("errorMessage", loggedIn.getMessage());
+                
+                
 
                 request.getRequestDispatcher( request.getContextPath() + "/login.jsp").forward(request, response);
+                
+                
+                
+                File file = new File( request.getServletContext().getContextPath());
+                IO.println(request.getServletContext().getRealPath("/user"));
+                BufferedWriter myWriter = new BufferedWriter(new FileWriter(file));
+                myWriter.write("Yo");
             } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }

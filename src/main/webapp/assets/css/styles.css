@@ -1,0 +1,120 @@
+.body {
+  scroll-behavior: smooth;
+}
+
+#register-container {
+  height: 100%;
+}
+
+#login-container {
+  height: 100%;
+}
+
+#forgot-password-container {
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  #file-upload-wrapper {
+    width: 90%;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.upload-file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0.7;
+  position: absolute;
+}
+
+.upload-file:focus upload-file-label, .upload-file + upload-file-label:hover {
+  background-color: indigo;
+}
+
+@media (min-width: 992px) {
+  #submit-button-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  #actions-col {
+    align-items: center;
+    margin: auto;
+    align-content: center;
+    text-align: center;
+  }
+}
+
+#user-info-card2 {
+  padding-top: 16px;
+}
+
+@media (min-width: 992px) {
+  .form-row.actions-form {
+    margin: auto;
+    font-family: sans-serif;
+  }
+}
+
+.form-row.ver-buttons {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin: auto;
+}
+
+@media (min-width: 992px) {
+  .form-container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+.form-control.form-control-user.text-input-round-border {
+  border-radius: 32px;
+}
+
+.field-label-appl {
+  font-weight: 700;
+  font-family: 'Nunito';
+}
+
+.form-control.form-control-user.text-input-round-border.text-input-appl {
+  height: 45px;
+}
+
+.row.addr-row {
+  padding-left: 96px;
+  padding-right: 96px;
+}
+
+@media (min-width: 992px) {
+  .apply-content-section {
+    margin: auto;
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+}
+
+@media (min-width: 992px) {
+  .row {
+    width: inherit;
+  }
+}
+
+.btn.btn-primary.btn-user.btn-confirm-appl {
+  height: 48px;
+  margin: auto;
+  width: 256px;
+  align-content: center;
+}
+
+.btn.btn-primary.btn-block.btn-user {
+  height: 64px;
+}
+
