@@ -29,4 +29,14 @@ public class Contestant extends User{
     public void setContestantImageDir(String contestantImageDir) {
         this.contestantImageDir = contestantImageDir;
     }
+
+	public boolean isContestantVerified() {
+		return contestantVerified;
+	}
+
+	public void setContestantVerified(boolean contestantVerified) {
+		this.contestantVerified = contestantVerified;
+	}
+    
+    
 }
