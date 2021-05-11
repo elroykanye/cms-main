@@ -1,11 +1,11 @@
-﻿<%--
+<%--
     Document   : apply-contest
     Created on : Apr 30, 2021, 12:22:16 AM
     Author     : kanye
 --%>
 
 
-<%@ page import="com.tridiots.cms.shortcuts.IO"%>
+<%@ page import="com.tridiots.cms.kanye.IO"%>
 <%@ page import="com.tridiots.cms.models.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -161,27 +161,36 @@ User user = (User) request.getSession().getAttribute("loggedInUser");
                         </div>
                         <div>
                             <hr style="border-width: 4px;">
-                        </div>
-                        <form>
-                        <div class="form-container">
+                        </div> 
+                        <form action="apply-contest" method="post">
+                        	<div class="form-container">
                         	
-                        	<input type="hidden" name="uid" value="<%=user.getUserId() %>" >
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group"><label class="field-label-appl">First Name</label><input type="text" class="form-control form-control-user text-input-round-border text-input-appl" name="first-name" value="<%=user.getUserFirstName() %>"></div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group"><label class="field-label-appl">Last Name</label><input type="text" class="form-control form-control-user text-input-round-border text-input-appl" name="first-name" value="<%=user.getUserLastName() %>"></div>
-                                </div>
-                            </div>
+                        		<input type="hidden" name="uid" value="<%=user.getUserId() %>" >
+                            	<div class="row">
+                               		<div class="col">
+                                    	<div class="form-group"><label class="field-label-appl">First Name</label><input type="text" class="form-control form-control-user text-input-round-border text-input-appl" name="first-name" value="<%=user.getUserFirstName() %>"></div>
+                                	</div>
+                                	<div class="col">
+                                    	<div class="form-group"><label class="field-label-appl">Last Name</label><input type="text" class="form-control form-control-user text-input-round-border text-input-appl" name="first-name" value="<%=user.getUserLastName() %>"></div>
+                                	</div>
+                      			</div>
+                      			<div class="row" style="text-align: center; align-content:center; margin-auto">
+                      				<!-- JSP for password check -->
+                                	<%
+                                   	 	String message = (String) request.getAttribute("errorMessage");
+                                    	if(message != null) { %>
+                                    		<div class="form-group" style="text-align: center; align-content:center; margin:auto; color: red"><%= message %></div>
+                                    	<% }
+                               		 %>
+                      			</div>
                             
                             <div class="row">
                                 <div class="col" style="text-align: center;">
                                     <p style="padding-top:16px;padding-bottom:16px;">By the clicking the "Confirm button, you agree to the terms and conditions of this competition.</p>
                                 </div>
                             </div>
-                            <div style="text-align: center;"><button class="btn btn-primary btn-user btn-confirm-appl" type="button" style="border-style: none;border-radius: 32px;">Confirm</button></div>
-                        </div>
+                            <div style="text-align: center;"><button class="btn btn-primary btn-user btn-confirm-appl" type="submit" style="border-style: none;border-radius: 32px;">Confirm</button></div>
+                        	</div>
                         </form>
                         <div>
                             <hr style="border-width: 4px;">

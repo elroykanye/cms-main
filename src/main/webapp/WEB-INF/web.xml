@@ -115,4 +115,12 @@
         <servlet-name>UsersController</servlet-name>
         <url-pattern>/users</url-pattern>
     </servlet-mapping>
+    <servlet>
+    	<servlet-name>ApplyContest</servlet-name>
+    	<servlet-class>com.tridiots.cms.controllers.user.ApplyContest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>ApplyContest</servlet-name>
+    	<url-pattern>/user/apply-contest</url-pattern>
+    </servlet-mapping>
 </web-app>

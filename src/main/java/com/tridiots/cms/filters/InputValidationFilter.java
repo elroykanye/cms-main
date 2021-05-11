@@ -5,8 +5,8 @@
  */
 package com.tridiots.cms.filters;
 
+import com.tridiots.cms.kanye.IO;
 import com.tridiots.cms.message.Message;
-import com.tridiots.cms.shortcuts.IO;
 import com.tridiots.cms.validator.LoginValidator;
 import java.io.IOException;
 import java.io.PrintStream;

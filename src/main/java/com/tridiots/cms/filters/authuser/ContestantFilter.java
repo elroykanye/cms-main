@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.tridiots.cms.filters.AuthUserFilter;
-import com.tridiots.cms.shortcuts.IO;
+import com.tridiots.cms.kanye.IO;
 
 /**
  * Servlet Filter implementation class ContestantFilter

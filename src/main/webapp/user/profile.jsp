@@ -5,7 +5,7 @@
 --%>
 
 
-<%@page import="com.tridiots.cms.shortcuts.IO"%>
+<%@page import="com.tridiots.cms.kanye.IO"%>
 <%@page import="com.tridiots.cms.models.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

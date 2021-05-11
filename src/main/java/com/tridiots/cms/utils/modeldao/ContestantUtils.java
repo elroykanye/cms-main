@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.tridiots.cms.message.Message;
@@ -15,25 +16,50 @@ public class ContestantUtils {
 	
 	private static Contestant contestant = null;
 	
-	/*** Table values ***/
-	private static final String TABLE_NAME = "wtaxy_contestant";
 	
 	private static Connection conn;
 	private static PreparedStatement prepStatement;
 	private static ResultSet resultSet;
 	private static Message message = null;
 	
+	public static Message addContestant(int userId) {
+		int uid = userId;
+		String avatarDir = "dir";
+		conn = ConnectionUtils.openConnection();
+		message = new Message("Contestant registration unsuccessful", false);
+		Message conExists = findContestant(userId);
+		String sql = "INSERT INTO wtaxy_contestant(user_id,contestant_image_dir) VALUES (?,?)";
+		
+		if(!conExists.getFlag()) {
+			try {
+				prepStatement = conn.prepareStatement(sql);
+				prepStatement.setInt(1, uid);
+				prepStatement.setString(2, avatarDir);
+				prepStatement.executeUpdate();
+				message.setMessage("Contestant registration successful"); message.setFlag(true);
+			} catch (SQLException exception) {
+				// TODO add logger
+				exception.printStackTrace();
+			} finally {
+				ConnectionUtils.closeConnection(conn);
+				QueryUtils.closeQueryObject(prepStatement);
+			}
+		} else {
+			message.setMessage("Contestant account already registered"); message.setFlag(false);
+		}
+		return message;
+	}
+	
 	public static Message addContestant (Contestant con) {
 		contestant = con;
 		conn = ConnectionUtils.openConnection();
 		 message = new Message("Contestant registration unsuccessful", false);
 		
-		String sql = "INSERT INTO ?(user_id,contestant_image_dir) VALUES (?,?)";
+		String sql = "INSERT INTO wtaxy_contestant(user_id,contestant_image_dir) VALUES (?,?);";
 		try {
 			prepStatement = conn.prepareStatement(sql);
-			prepStatement.setString(1, TABLE_NAME);
-			prepStatement.setInt(2, contestant.getUserId());
-			prepStatement.setString(3, contestant.getContestantImageDir());
+			prepStatement.setInt(1, contestant.getUserId());
+			prepStatement.setString(2, contestant.getContestantImageDir());
 			prepStatement.executeUpdate();
 			message.setMessage("Contestant registration successful"); message.setFlag(true);
 		} catch (SQLException exception) {
@@ -52,12 +78,11 @@ public class ContestantUtils {
 		message = new Message("Remove contestant: Operation unsuccessful", false);
 		int conId = con.getContestantId();
 		conn = ConnectionUtils.openConnection();
-		String sql = "DELETE FROM ? WHERE contestant_id=?";
+		String sql = "DELETE FROM wtaxy_contestant WHERE contestant_id=?;";
 		
 		try {
 			prepStatement = conn.prepareStatement(sql);
-			prepStatement.setString(1, TABLE_NAME);
-			prepStatement.setInt(2, conId);
+			prepStatement.setInt(1, conId);
 			message.setFlag(true); message.setMessage("Remove contestant: Operation successful");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -83,14 +108,37 @@ public class ContestantUtils {
 				+ "	INNER JOIN cms.wtaxy_contestant wc ON ( wu.user_id = wc.user_id  )  ";
 		try {
 			prepStatement = conn.prepareStatement(sql);
-			prepStatement.setString(1, TABLE_NAME);
 			resultSet = prepStatement.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnectionUtils.closeConnection(conn);
+			QueryUtils.closeQueryObjects(prepStatement, resultSet);
 		}
 		return contestants;
 		
+	}
+	
+	public static Message findContestant(int userId) {
+		String sql  = "SELECT user_id FROM wtaxy_contestant WHERE user_id=?;";
+		conn = ConnectionUtils.openConnection();
+		
+		try {
+			prepStatement = conn.prepareStatement(sql);
+			prepStatement.setInt(1, userId);
+			resultSet = prepStatement.executeQuery();
+			if(resultSet.next()) {
+				return new Message("Contestant exists", true);
+			}
+			
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		} finally {
+			ConnectionUtils.closeConnection(conn);
+			QueryUtils.closeQueryObjects(prepStatement, resultSet);
+		}
+		return new Message("Contestant does not exist", false);
 	}
 
 }

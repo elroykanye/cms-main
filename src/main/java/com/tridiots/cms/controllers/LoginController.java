@@ -1,8 +1,8 @@
 package com.tridiots.cms.controllers;
 
+import com.tridiots.cms.kanye.IO;
 import com.tridiots.cms.message.Message;
 import com.tridiots.cms.models.User;
-import com.tridiots.cms.shortcuts.IO;
 import com.tridiots.cms.utils.modeldao.UserUtils;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
