@@ -1,6 +1,8 @@
 package com.tridiots.cms.filters.authuser;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -43,7 +45,7 @@ public class AdminFilter extends AuthUserFilter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		
-		int adminRoleCode = 111;
+		ArrayList<Integer> adminRoleCode = new ArrayList<>(111);
 		if(AuthUserFilter.roleSessionChecker(httpRequest, adminRoleCode)) {
 			IO.println("Admin session valid");
 			chain.doFilter(httpRequest, httpResponse); 

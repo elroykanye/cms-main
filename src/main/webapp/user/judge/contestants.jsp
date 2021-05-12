@@ -157,11 +157,11 @@ ArrayList<DoubleObject<Contestant,User>> contestants = ContestantUtils.getContes
                                     				%>
                                     				
                                     				<tr>
-                                            			<td><img class="rounded-circle mr-2" width="30" height="30" src="avatars/avatar1.jpeg">elroykanye</td>
+                                            			<td><img class="rounded-circle mr-2" width="30" height="30" src="avatars/avatar1.jpeg"><%= currentUser.getUserName() %></td>
                                             			<td><%=currentUser.getUserFirstName() %></td>
                                             			<td><%=currentUser.getUserLastName() %></td>
                                             			<td><%=currentUser.getUserGender() %></td>
-                                            			<td><%=currentUser.getUserDob() %></td>
+                                            			<td><%=currentUser.getUserJoinDate() %></td>
                                             			<td>
                                                 			<form>
                                                 				<!-- <input type="hidden" name="conId" value="<%=currentContestant.getContestantId() %>"> -->

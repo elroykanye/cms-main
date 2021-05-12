@@ -1,6 +1,8 @@
 package com.tridiots.cms.filters.authuser;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -17,7 +19,6 @@ import com.tridiots.cms.kanye.IO;
 /**
  * Servlet Filter implementation class JudgeFilter
  */
-@WebFilter("/JudgeFilter")
 public class JudgeFilter extends AuthUserFilter {
 
     /**
@@ -43,7 +44,8 @@ public class JudgeFilter extends AuthUserFilter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		
-		int judgeRoleCode = 222;
+		ArrayList<Integer> judgeRoleCode = new ArrayList<>();
+		judgeRoleCode.add(222);
 		if(AuthUserFilter.roleSessionChecker(httpRequest, judgeRoleCode)) {
 			IO.println("Judge session valid");
 			chain.doFilter(httpRequest, httpResponse); 

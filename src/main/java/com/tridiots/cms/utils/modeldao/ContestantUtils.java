@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.tridiots.cms.kanye.DoubleObject;
+import com.tridiots.cms.kanye.IO;
 import com.tridiots.cms.message.Message;
 import com.tridiots.cms.models.Contestant;
 import com.tridiots.cms.models.User;
@@ -27,13 +28,14 @@ public class ContestantUtils {
 	public static Message addContestant(int userId) {
 		int uid = userId;
 		String avatarDir = "dir";
-		conn = ConnectionUtils.openConnection();
+		
 		message = new Message("Contestant registration unsuccessful", false);
 		Message conExists = findContestant(userId);
 		String sql = "INSERT INTO wtaxy_contestant(user_id,contestant_image_dir) VALUES (?,?)";
 		
 		if(!conExists.getFlag()) {
 			try {
+				conn = ConnectionUtils.openConnection();
 				prepStatement = conn.prepareStatement(sql);
 				prepStatement.setInt(1, uid);
 				prepStatement.setString(2, avatarDir);
@@ -43,9 +45,9 @@ public class ContestantUtils {
 				// TODO add logger
 				exception.printStackTrace();
 			} finally {
-				ConnectionUtils.closeConnection(conn);
+				
 				QueryUtils.closeQueryObject(prepStatement);
-			}
+			} ConnectionUtils.closeConnection(conn);
 		} else {
 			message.setMessage("Contestant account already registered"); message.setFlag(false);
 		}
@@ -68,9 +70,9 @@ public class ContestantUtils {
 			// TODO add logger
 			exception.printStackTrace();
 		} finally {
-			ConnectionUtils.closeConnection(conn);
+			
 			QueryUtils.closeQueryObject(prepStatement);
-		}
+		} ConnectionUtils.closeConnection(conn);
 		
 		return message;
 		
@@ -102,29 +104,29 @@ public class ContestantUtils {
 	}
 	
 	public static ArrayList<DoubleObject<Contestant,User>> getContestants () {
-		
-		
 		ArrayList<DoubleObject<Contestant,User>> contestants = new ArrayList<DoubleObject<Contestant, User>>();
-		
-		
-		
 		conn = ConnectionUtils.openConnection();
-		String sql = "SELECT wu.user_name, wu.user_email, wu.user_first_name, wu.user_last_name, wu.user_gender, wu.user_dob, wc.contestant_image_dir\r\n"
+		String sql = "SELECT wu.user_id, wu.user_name, wu.user_email, wu.user_pass, wu.user_first_name, wu.user_last_name, wu.user_gender, wu.user_dob, wu.user_verified, wu.user_role, wu.user_joined_date, wc.contestant_image_dir\r\n"
 				+ "FROM cms.wtaxy_user wu \r\n"
-				+ "	INNER JOIN cms.wtaxy_contestant wc ON ( wu.user_id = wc.user_id  )  ";
+				+ "	INNER JOIN cms.wtaxy_contestant wc ON ( wu.user_id = wc.user_id  ) ";
 		try {
 			prepStatement = conn.prepareStatement(sql);
 			resultSet = prepStatement.executeQuery();
-			Contestant contestant = new Contestant();
-			User user = new User();
+			
 			while(resultSet.next()) {
+				Contestant contestant = new Contestant();
+				User user = new User();
 				contestant.setContestantImageDir(resultSet.getString("wc.contestant_image_dir"));
 				user.setUserName(resultSet.getString("wu.user_name"));
 				user.setUserEmail(resultSet.getString("wu.user_email"));
 				user.setUserFirstName(resultSet.getString("wu.user_first_name"));
-				user.setUserLastName(resultSet.getString("wu_user_gender"));
+				user.setUserLastName(resultSet.getString("wu.user_last_name"));
+				user.setUserGender(resultSet.getString("wu.user_gender"));
 				user.setUserDob(resultSet.getDate("wu.user_dob"));
+				user.setUserJoinDate(resultSet.getDate("wu.user_joined_date"));
 				contestants.add(new DoubleObject<Contestant,User>(contestant,user));
+				
+				IO.println(user.getUserName() + " " + user.getUserFirstName() + " " + user.getUserLastName());
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -152,9 +154,9 @@ public class ContestantUtils {
 		} catch (SQLException exception) {
 			exception.printStackTrace();
 		} finally {
-			ConnectionUtils.closeConnection(conn);
+			
 			QueryUtils.closeQueryObjects(prepStatement, resultSet);
-		}
+		} ConnectionUtils.closeConnection(conn);
 		return new Message("Contestant does not exist", false);
 	}
 

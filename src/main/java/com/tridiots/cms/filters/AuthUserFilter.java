@@ -7,8 +7,8 @@ import javax.servlet.http.HttpSession;
 
 import com.tridiots.cms.kanye.IO;
 import com.tridiots.cms.models.User;
-
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class AuthUserFilter implements Filter {
 	public AuthUserFilter() {}
@@ -28,8 +28,10 @@ public class AuthUserFilter implements Filter {
     	HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
 		HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
 		
-		int userRoleCode = 444;
-		if(roleSessionChecker(httpRequest, userRoleCode)) {
+		int[] uCodes = new int[]{111,222,333,444};
+		ArrayList<Integer> userRoleCodes = new ArrayList<>();  
+		for(int c: uCodes) {userRoleCodes.add(c);}
+		if(roleSessionChecker(httpRequest, userRoleCodes)) {
 			IO.println("Session valid");
             filterChain.doFilter(httpRequest, httpResponse);
 		} else {
@@ -41,12 +43,12 @@ public class AuthUserFilter implements Filter {
 
     }
     
-    public static boolean roleSessionChecker(HttpServletRequest httpRequest, int roleCode) {
+    public static boolean roleSessionChecker(HttpServletRequest httpRequest, ArrayList<Integer> roleCodes) {
     	HttpSession session = httpRequest.getSession();
-    	
-    	if(session != null) {
+    	if(session != null && session.getAttribute("loggedInUser") != null) {
     		User loggedInUser = (User) session.getAttribute("loggedInUser");
-    		return (loggedInUser != null && loggedInUser.getUserRole() == roleCode);
+    		IO.println(loggedInUser.getUserRole());
+    		return roleCodes.contains(loggedInUser.getUserRole()); 
     	}
     	return false;
     }

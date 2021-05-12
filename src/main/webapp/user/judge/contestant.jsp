@@ -28,7 +28,6 @@
 
 <% 
 
-ArrayList<Contestant> contestants = ContestantUtils.getContestants();
 
 %>
 

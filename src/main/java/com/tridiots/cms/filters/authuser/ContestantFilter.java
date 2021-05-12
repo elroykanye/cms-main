@@ -1,6 +1,8 @@
 package com.tridiots.cms.filters.authuser;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -43,7 +45,8 @@ public class ContestantFilter extends AuthUserFilter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		
-		int contestantRoleCode = 333;
+		ArrayList<Integer> contestantRoleCode = new ArrayList<>();
+		contestantRoleCode.add(333);
 		if(AuthUserFilter.roleSessionChecker(httpRequest, contestantRoleCode)) {
 			IO.println("COntestant session valid");
 			chain.doFilter(httpRequest, httpResponse);

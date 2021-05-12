@@ -17,9 +17,7 @@ public class User {
     private Date userDob;
     private boolean userVerified;
     private int userRole;
-    
-
-    
+    private Date userJoinDate;
 
 	private String userLogin;
 
@@ -112,4 +110,11 @@ public class User {
 		this.userRole = userRole;
 	}
 
+	public Date getUserJoinDate() {
+		return userJoinDate;
+	}
+
+	public void setUserJoinDate(Date userJoinDate) {
+		this.userJoinDate = userJoinDate;
+	}
 }

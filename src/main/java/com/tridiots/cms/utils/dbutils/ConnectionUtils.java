@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.concurrent.ForkJoinWorkerThread;
 
+import com.sun.tools.sjavac.Log;
+import com.sun.tools.sjavac.Log.Level;
 import com.tridiots.cms.kanye.IO;
 
 // TODO add a path to store exceptions
@@ -19,8 +22,21 @@ public class ConnectionUtils {
     private static final String DB_USER = "root";
     private static final String DB_PASS = "";
     private static Driver driver;
-    
 
+    @SuppressWarnings("restriction")
+	private static void deregisterDriver() {
+    	Enumeration<Driver> drivers = DriverManager.getDrivers();
+    	while(drivers.hasMoreElements()) {
+    		Driver driver = drivers.nextElement();
+    		try {
+    			DriverManager.deregisterDriver(driver);
+    			IO.println("Driver deregistered");
+    		} catch(SQLException exception) {
+    			exception.printStackTrace();
+    		}
+    	}
+    }
+    
     private static void registerDriver() {
         try {
             Class.forName(DRIVER_NAME);
@@ -31,25 +47,12 @@ public class ConnectionUtils {
 		}
     }
     
-    private static void unregisterDriver() {
-    	try {
-    		@SuppressWarnings("rawtypes")
-			Enum drivers = (Enum) DriverManager.getDrivers();
-    		while(drivers != null) {
-    			DriverManager.deregisterDriver((Driver) drivers);
-    		}
-			
-			IO.println("Driver unregistered");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
     
     public static Connection openConnection() {
-        registerDriver();
+        //registerDriver();
         try {
             // TODO add success log
+        	//registerDriver();
             return DriverManager.getConnection(DB_HOST, DB_USER, DB_PASS);
         } catch(SQLException exception) {
             System.out.println("The connection was not successful");
@@ -60,7 +63,6 @@ public class ConnectionUtils {
         try {
             if(connection != null) {
                 connection.close();
-                // TODO add success log message
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

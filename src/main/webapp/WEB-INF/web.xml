@@ -27,6 +27,13 @@
             30
         </session-timeout>
     </session-config>
+    
+    <!-- Listeners -->
+    <listener>
+    	<listener-class>com.tridiots.cms.listeners.SpecialListener</listener-class>
+    </listener>
+    <!-- Listeners end -->
+    
     <!-- Filters -->
     <filter>
         <filter-name>AuthUserFilter</filter-name>
