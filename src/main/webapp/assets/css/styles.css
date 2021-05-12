@@ -16,7 +16,7 @@
 
 @media (min-width: 768px) {
   #file-upload-wrapper {
-    width: 90%;
+    width: 100%;
     margin-top: auto;
     margin-left: auto;
     margin-right: auto;
@@ -116,5 +116,24 @@
 
 .btn.btn-primary.btn-block.btn-user {
   height: 64px;
+}
+
+.form-control {
+}
+
+.form-control.text-area-submit {
+  width: inherit;
+  margin: auto;
+}
+
+@media (min-width: 768px) {
+  section {
+    margin: auto;
+  }
+}
+
+.para-5 {
+  padding-top: 3rem!important;
+  padding-bottom: 3rem!important;
 }
 
