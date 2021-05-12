@@ -1,4 +1,17 @@
-﻿<!DOCTYPE html>
+﻿<%--
+    Document   : contestant
+    Created on : Apr 30, 2021, 12:22:16 AM
+    Author     : kanye
+--%>
+
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.tridiots.cms.kanye.IO"%>
+<%@ page import="com.tridiots.cms.models.Contestant"%>
+<%@ page import="com.tridiots.cms.utils.modeldao.ContestantUtils" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -12,6 +25,13 @@
     <link rel="stylesheet" href="../../assets/fonts/fontawesome5-overrides.min.css">
     <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
+
+<% 
+
+ArrayList<Contestant> contestants = ContestantUtils.getContestants();
+
+%>
+
 
 <body id="page-top">
     <div id="wrapper">

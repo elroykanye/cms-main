@@ -1,4 +1,20 @@
-﻿<!DOCTYPE html>
+﻿<%--
+    Document   : contestants
+    Created on : Apr 30, 2021, 12:22:16 AM
+    Author     : kanye
+--%>
+
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.tridiots.cms.kanye.DoubleObject" %>
+<%@ page import="com.tridiots.cms.kanye.IO"%>
+<%@ page import="com.tridiots.cms.models.Contestant"%>
+
+<%@ page import="com.tridiots.cms.models.User" %>
+<%@ page import="com.tridiots.cms.utils.modeldao.ContestantUtils" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -12,6 +28,12 @@
     <link rel="stylesheet" href="../../assets/fonts/fontawesome5-overrides.min.css">
     <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
+
+<% 
+
+ArrayList<DoubleObject<Contestant,User>> contestants = ContestantUtils.getContestants();
+
+%>
 
 <body id="page-top">
     <div id="wrapper">
@@ -122,6 +144,36 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    	<% if(contestants == null) { %>
+                                    		
+                                    		<tr>
+                                    			<td>Empty</td>
+                                    		</tr>
+                                    		
+                                    	<% } else  {
+                                    			for(DoubleObject<Contestant,User> contestant: contestants) {
+                                    				Contestant currentContestant = contestant.getObject1();
+                                    				User currentUser = contestant.getObject2();
+                                    				%>
+                                    				
+                                    				<tr>
+                                            			<td><img class="rounded-circle mr-2" width="30" height="30" src="avatars/avatar1.jpeg">elroykanye</td>
+                                            			<td><%=currentUser.getUserFirstName() %></td>
+                                            			<td><%=currentUser.getUserLastName() %></td>
+                                            			<td><%=currentUser.getUserGender() %></td>
+                                            			<td><%=currentUser.getUserDob() %></td>
+                                            			<td>
+                                                			<form>
+                                                				<!-- <input type="hidden" name="conId" value="<%=currentContestant.getContestantId() %>"> -->
+                                                    			<div class="form-row">
+                                                        		<div class="col"><button class="btn btn-primary" type="button">Edit</button></div>
+                                                    		</div>
+                                                		</form>
+                                            </td>
+                                        </tr>
+                                    		
+                                        		<% } %>
+                                    	<% } %>
                                         <tr>
                                             <td><img class="rounded-circle mr-2" width="30" height="30" src="avatars/avatar1.jpeg">elroykanye</td>
                                             <td>Elroy</td>

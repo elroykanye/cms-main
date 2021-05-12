@@ -7,8 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.tridiots.cms.kanye.DoubleObject;
 import com.tridiots.cms.message.Message;
 import com.tridiots.cms.models.Contestant;
+import com.tridiots.cms.models.User;
 import com.tridiots.cms.utils.dbutils.ConnectionUtils;
 import com.tridiots.cms.utils.dbutils.QueryUtils;
 
@@ -99,8 +101,12 @@ public class ContestantUtils {
 		
 	}
 	
-	public static ArrayList<Contestant> getContestants () {
-		ArrayList<Contestant> contestants = new ArrayList<>();
+	public static ArrayList<DoubleObject<Contestant,User>> getContestants () {
+		
+		
+		ArrayList<DoubleObject<Contestant,User>> contestants = new ArrayList<DoubleObject<Contestant, User>>();
+		
+		
 		
 		conn = ConnectionUtils.openConnection();
 		String sql = "SELECT wu.user_name, wu.user_email, wu.user_first_name, wu.user_last_name, wu.user_gender, wu.user_dob, wc.contestant_image_dir\r\n"
@@ -109,6 +115,17 @@ public class ContestantUtils {
 		try {
 			prepStatement = conn.prepareStatement(sql);
 			resultSet = prepStatement.executeQuery();
+			Contestant contestant = new Contestant();
+			User user = new User();
+			while(resultSet.next()) {
+				contestant.setContestantImageDir(resultSet.getString("wc.contestant_image_dir"));
+				user.setUserName(resultSet.getString("wu.user_name"));
+				user.setUserEmail(resultSet.getString("wu.user_email"));
+				user.setUserFirstName(resultSet.getString("wu.user_first_name"));
+				user.setUserLastName(resultSet.getString("wu_user_gender"));
+				user.setUserDob(resultSet.getDate("wu.user_dob"));
+				contestants.add(new DoubleObject<Contestant,User>(contestant,user));
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
