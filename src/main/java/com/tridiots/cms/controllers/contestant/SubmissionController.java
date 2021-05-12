@@ -31,11 +31,11 @@ public class SubmissionController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uploadsDir = "";
+		Submission submission = new Submission();
 		
 		try {
 			int conId = Integer.parseInt(request.getParameter("cid"));
 			
-			Submission submission = new Submission();
 			submission.setSubmissionDate((java.sql.Date) new Date());
 			submission.setSubmissionFileEn(uploadsDir);
 			submission.setSubmissionFileKom(uploadsDir);
@@ -44,6 +44,8 @@ public class SubmissionController extends HttpServlet {
 		} catch(NumberFormatException exception) {
 			exception.printStackTrace();
 		}
+	
+		
 		
 	}
 
