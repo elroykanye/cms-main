@@ -1,4 +1,21 @@
-﻿<!DOCTYPE html>
+﻿<%--
+    Document   : submit
+    Created on : Apr 30, 2021, 12:22:16 AM
+    Author     : kanye
+--%>
+
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.tridiots.cms.kanye.DoubleObject" %>
+<%@ page import="com.tridiots.cms.kanye.IO"%>
+<%@ page import="com.tridiots.cms.models.Contestant"%>
+
+<%@ page import="com.tridiots.cms.models.User" %>
+<%@ page import="com.tridiots.cms.utils.modeldao.ContestantUtils" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+    
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -12,6 +29,11 @@
     <link rel="stylesheet" href="../assets/fonts/fontawesome5-overrides.min.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
+
+<%
+Contestant loggedInContestant = (Contestant) request.getSession().getAttribute("loggedInContestant");
+String errorMessage = (String) request.getAttribute("errorMessage");
+%>
 
 <body id="page-top">
     <div id="wrapper">
@@ -97,24 +119,35 @@
                                 <div class="text-center">
                                     <h4 class="text-dark mb-4">Confirm Your Information</h4>
                                 </div>
-                                <form class="user">
+                                <form class="user" action="submit" method="post">
                                     <hr>
                                     <div class="form-group row">
-                                        <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" id="firstName" placeholder="First Name" name="first_name" required=""></div>
-                                        <div class="col-sm-6"><input class="form-control form-control-user" type="text" id="lastName" placeholder="Last Name" name="last_name" required=""></div>
+                                    	<input type="hidden" name="conid" value="<%=loggedInContestant.getContestantId() %>" >
+                                        <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" id="firstName" placeholder="First Name" name="first_name" value="<%=loggedInContestant.getUserFirstName() %>" required=""></div>
+                                        <div class="col-sm-6"><input class="form-control form-control-user" type="text" id="lastName" placeholder="Last Name" name="last_name" value="<%=loggedInContestant.getUserLastName() %>" required=""></div>
                                     </div>
-                                    <div class="form-group"><input class="form-control form-control-user" type="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Email Address" name="email" required=""></div>
+                                    <div class="form-group"><input class="form-control form-control-user" type="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Email Address" name="email" value="<%=loggedInContestant.getUserEmail() %>" required=""></div>
                                     <div class="form-group row" id="file-upload-wrapper">
                                         <div class="container">
-                                            <h5>Poem in Itangi-Kom</h5><textarea class="form-control text-area-submit" cols="100%" rows="12"></textarea>
+                                            <h5>Poem in Itangi-Kom</h5><textarea class="form-control text-area-submit" cols="100%" rows="12" name="komPoem"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row" id="file-upload-wrapper">
                                         <div class="container">
-                                            <h5>Poem in English</h5><textarea class="form-control text-area-submit" cols="100%" rows="12"></textarea>
+                                            <h5>Poem in English</h5><textarea class="form-control text-area-submit" cols="100%" rows="12" name="engPoem"></textarea>
                                         </div>
                                     </div>
-                                    <div id="submit-button-wrapper" class="form-control-user"><button class="btn btn-primary btn-block text-white btn-user" type="submit" style="background: var(--purple);">Submit</button></div>
+                                    
+                                    <% if(errorMessage != null) { %>
+                                    
+                                    	<div class="form-group row" id="file-upload-wrapper">
+                                        	<div class="container" style="text-align:center;">
+                                           		<span style="color: red;"><%=errorMessage %></span>
+                                        	</div>
+                                    	</div>
+                                    <% } %>
+                                    
+                                    <div id="submit-button-wrapper" class="form-control-user"><button class="btn btn-primary btn-block text-white btn-user" type="submit" name="action" value="submit" style="background: var(--purple);">Submit</button></div>
                                     <hr>
                                 </form>
                             </div>

@@ -31,7 +31,7 @@
 
 <% 
 
-ArrayList<DoubleObject<Contestant,User>> contestants = ContestantUtils.getContestants();
+ArrayList<Contestant> contestants = ContestantUtils.getContestants();
 
 %>
 
@@ -151,20 +151,19 @@ ArrayList<DoubleObject<Contestant,User>> contestants = ContestantUtils.getContes
                                     		</tr>
                                     		
                                     	<% } else  {
-                                    			for(DoubleObject<Contestant,User> contestant: contestants) {
-                                    				Contestant currentContestant = contestant.getObject1();
-                                    				User currentUser = contestant.getObject2();
+                                    			for(Contestant contestant: contestants) {
+                                    				
                                     				%>
                                     				
                                     				<tr>
-                                            			<td><img class="rounded-circle mr-2" width="30" height="30" src="avatars/avatar1.jpeg"><%= currentUser.getUserName() %></td>
-                                            			<td><%=currentUser.getUserFirstName() %></td>
-                                            			<td><%=currentUser.getUserLastName() %></td>
-                                            			<td><%=currentUser.getUserGender() %></td>
-                                            			<td><%=currentUser.getUserJoinDate() %></td>
+                                            			<td><img class="rounded-circle mr-2" width="30" height="30" src="avatars/avatar1.jpeg"><%= contestant.getUserName() %></td>
+                                            			<td><%=contestant.getUserFirstName() %></td>
+                                            			<td><%=contestant.getUserLastName() %></td>
+                                            			<td><%=contestant.getUserGender() %></td>
+                                            			<td><%=contestant.getUserJoinDate() %></td>
                                             			<td>
                                                 			<form>
-                                                				<!-- <input type="hidden" name="conId" value="<%=currentContestant.getContestantId() %>"> -->
+                                                				<!-- <input type="hidden" name="conId" value="<%=contestant.getContestantId() %>"> -->
                                                     			<div class="form-row">
                                                         		<div class="col"><button class="btn btn-primary" type="button">Edit</button></div>
                                                     		</div>
