@@ -138,4 +138,12 @@
     	<servlet-name>Submit</servlet-name>
     	<url-pattern>/user/submit</url-pattern>
     </servlet-mapping>
+    <servlet>
+    	<servlet-name>Submissions</servlet-name>
+    	<servlet-class>com.tridiots.cms.controllers.judge.SubmissionsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>Submissions</servlet-name>
+    	<url-pattern>/judge/submissions</url-pattern>
+    </servlet-mapping>
 </web-app>
