@@ -2,7 +2,9 @@ package com.tridiots.cms.controllers;
 
 import com.tridiots.cms.kanye.IO;
 import com.tridiots.cms.message.Message;
+import com.tridiots.cms.models.Contestant;
 import com.tridiots.cms.models.User;
+import com.tridiots.cms.utils.modeldao.ContestantUtils;
 import com.tridiots.cms.utils.modeldao.UserUtils;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -61,6 +63,28 @@ public class LoginController extends Controller{
         if(loggedIn.getFlag())  {
             try {
             	user = UserUtils.getUser(inputLogin);
+            	switch(user.getUserRole()) {
+            	case 111:
+            		request.getSession().setAttribute("loggedInAdmin", user);
+            		break;
+            	case 222:
+            		request.getSession().setAttribute("loggedInJudge", user);
+            		break;
+            	case 333:
+            		Contestant loggedInContestant = ContestantUtils.getContestant(user.getUserId());
+            		request.getSession().setAttribute("loggedInContestant", loggedInContestant);
+            		break;
+            	case 444:
+            		break;
+            	default:
+            		request.setAttribute("errorMessage", "Invalid user!!!");
+            		try {
+						request.getRequestDispatcher(request.getContextPath() + "/login.jsp").forward(request, response);
+					} catch (ServletException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} break;
+            	}
             	// added correct assign user session attribs to session object
             	request.getSession().setAttribute("loggedInUser", user);
 
@@ -71,17 +95,8 @@ public class LoginController extends Controller{
         } else {
             try {
                 request.setAttribute("errorMessage", loggedIn.getMessage());
+                request.getRequestDispatcher( "/login.jsp").forward(request, response);
                 
-                
-
-                request.getRequestDispatcher( request.getContextPath() + "/login.jsp").forward(request, response);
-                
-                
-                
-                File file = new File( request.getServletContext().getContextPath());
-                IO.println(request.getServletContext().getRealPath("/user"));
-                BufferedWriter myWriter = new BufferedWriter(new FileWriter(file));
-                myWriter.write("Yo");
             } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
