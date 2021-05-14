@@ -21,16 +21,16 @@ public class Submission {
 	public void setSubmissionDate(Date submissionDate) {
 		this.submissionDate = submissionDate;
 	}
-	public String getSubmissionFileEn() {
+	public String getSubmissionPoemEn() {
 		return submissionPoemEn;
 	}
-	public void setSubmissionFileEn(String submissionFileEn) {
+	public void setSubmissionPoemEn(String submissionFileEn) {
 		this.submissionPoemEn = submissionFileEn;
 	}
-	public String getSubmissionFileKom() {
+	public String getSubmissionPoemKom() {
 		return submissionPoemKom;
 	}
-	public void setSubmissionFileKom(String submissionFileKom) {
+	public void setSubmissionPoemKom(String submissionFileKom) {
 		this.submissionPoemKom = submissionFileKom;
 	}
 	public int getContestantId() {
