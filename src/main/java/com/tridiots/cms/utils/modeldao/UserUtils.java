@@ -204,6 +204,7 @@ public class UserUtils {
         	String sql = "SELECT user_pass FROM wtaxy_user WHERE user_name=? OR user_email=?";
         	
         	try {
+        		conn = ConnectionUtils.openConnection();
         		prepStatement = conn.prepareStatement(sql);
             	prepStatement.setString(1, user.getUserLogin());
 				prepStatement.setString(2, user.getUserLogin());
@@ -262,10 +263,9 @@ public class UserUtils {
     
     
     public static Message findUser(String login) {
-        conn = ConnectionUtils.openConnection();
         String sqlUsername = "SELECT user_name,user_email FROM wtaxy_user WHERE user_name=? OR user_email=?";
         try {
-            assert conn != null;
+        	conn = ConnectionUtils.openConnection();
             prepStatement = conn.prepareStatement(sqlUsername);
             prepStatement.setString(1, login);
             prepStatement.setString(2, login);
@@ -276,6 +276,7 @@ public class UserUtils {
             IO.println(exception);
         } finally {
             QueryUtils.closeQueryObjects(prepStatement, resultSet);
+            ConnectionUtils.closeConnection(conn);
         }
         return new Message("User does not exist", false);
     }
