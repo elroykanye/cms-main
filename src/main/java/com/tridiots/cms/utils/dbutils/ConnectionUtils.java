@@ -52,7 +52,7 @@ public class ConnectionUtils {
         //registerDriver();
         try {
             // TODO add success log
-        	//registerDriver();
+        	registerDriver();
             return DriverManager.getConnection(DB_HOST, DB_USER, DB_PASS);
         } catch(SQLException exception) {
             System.out.println("The connection was not successful");

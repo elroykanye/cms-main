@@ -31,15 +31,20 @@ public class ContestantUtils {
 		
 		message = new Message("Contestant registration unsuccessful", false);
 		Message conExists = findContestant(userId);
-		String sql = "INSERT INTO wtaxy_contestant(user_id,contestant_image_dir) VALUES (?,?)";
-		
+		String insertSql = "INSERT INTO wtaxy_contestant(user_id,contestant_image_dir) VALUES (?,?)";
+		String updateSQL = "UPDATE wtaxy_user SET user_role=333 WHERE user_id=?";
 		if(!conExists.getFlag()) {
 			try {
 				conn = ConnectionUtils.openConnection();
-				prepStatement = conn.prepareStatement(sql);
+				prepStatement = conn.prepareStatement(insertSql);
 				prepStatement.setInt(1, uid);
 				prepStatement.setString(2, avatarDir);
 				prepStatement.executeUpdate();
+				
+				prepStatement = conn.prepareStatement(updateSQL);
+				prepStatement.setInt(1, uid);
+				prepStatement.executeUpdate();
+				
 				message.setMessage("Contestant registration successful"); message.setFlag(true);
 			} catch (SQLException exception) {
 				// TODO add logger
@@ -98,9 +103,37 @@ public class ContestantUtils {
 		
 	}
 	
-	public static Contestant getContestant (int conId) {
-		return null;
+	public static Contestant getContestant (int uid) {
+		Message foundContestant = findContestant(uid);
+		Contestant contestant = new Contestant();
+		if(foundContestant.getFlag()) {
+			String sql = "SELECT wu.user_id, wu.user_name, wu.user_email, wu.user_pass, wu.user_first_name, wu.user_last_name, wu.user_gender, wu.user_dob, wu.user_verified, wu.user_role, wu.user_joined_date, wc.contestant_id, wc.contestant_image_dir\r\n"
+					+ "FROM cms.wtaxy_user wu \r\n"
+					+ "	INNER JOIN cms.wtaxy_contestant wc ON ( wu.user_id = wc.user_id  ) "
+					+ "WHERE wu.user_id=?";
+			try {
+				prepStatement = conn.prepareStatement(sql);
+				prepStatement.setInt(1, uid);
+				resultSet = prepStatement.executeQuery();
+				while(resultSet.next()) {
+					contestant.setUserName(resultSet.getString("wu.user_name"));
+					contestant.setContestantId(resultSet.getInt("wc.contestant_id"));
+					contestant.setContestantImageDir(resultSet.getString("wc.contestant_image_dir"));
+					contestant.setUserName(resultSet.getString("wu.user_name"));
+					contestant.setUserEmail(resultSet.getString("wu.user_email"));
+					contestant.setUserFirstName(resultSet.getString("wu.user_first_name"));
+					contestant.setUserLastName(resultSet.getString("wu.user_last_name"));
+					contestant.setUserGender(resultSet.getString("wu.user_gender"));
+					contestant.setUserDob(resultSet.getDate("wu.user_dob"));
+					contestant.setUserJoinDate(resultSet.getDate("wu.user_joined_date"));
+					IO.println(contestant.getUserName() + " " + contestant.getUserFirstName() + " " + contestant.getUserLastName());
+				} 
+			} catch (SQLException exception) {
+				exception.printStackTrace();
+			}
+		} 
 		
+		return contestant;
 	}
 	
 	public static ArrayList<Contestant> getContestants () {
