@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.tridiots.cms.message.Message;
+import com.tridiots.cms.models.Contestant;
 import com.tridiots.cms.utils.modeldao.ContestantUtils;
 
 /**
@@ -40,6 +41,8 @@ public class ApplyContest extends HttpServlet {
 		
 		Message addConSuccess = ContestantUtils.addContestant(userId);
 		if(addConSuccess.getFlag()) {
+			Contestant loggedInContestant = ContestantUtils.getContestant(userId);
+    		request.getSession().setAttribute("loggedInContestant", loggedInContestant);
 			response.sendRedirect(request.getContextPath() + "/user/submit.html");
 		} else {
 			request.setAttribute("errorMessage", addConSuccess.getMessage());
