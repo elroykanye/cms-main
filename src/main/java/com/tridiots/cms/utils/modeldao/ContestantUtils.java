@@ -103,8 +103,8 @@ public class ContestantUtils {
 		
 	}
 	
-	public static ArrayList<DoubleObject<Contestant,User>> getContestants () {
-		ArrayList<DoubleObject<Contestant,User>> contestants = new ArrayList<DoubleObject<Contestant, User>>();
+	public static ArrayList<Contestant> getContestants () {
+		ArrayList<Contestant> contestants = new ArrayList<Contestant>();
 		conn = ConnectionUtils.openConnection();
 		String sql = "SELECT wu.user_id, wu.user_name, wu.user_email, wu.user_pass, wu.user_first_name, wu.user_last_name, wu.user_gender, wu.user_dob, wu.user_verified, wu.user_role, wu.user_joined_date, wc.contestant_image_dir\r\n"
 				+ "FROM cms.wtaxy_user wu \r\n"
@@ -112,21 +112,21 @@ public class ContestantUtils {
 		try {
 			prepStatement = conn.prepareStatement(sql);
 			resultSet = prepStatement.executeQuery();
-			
 			while(resultSet.next()) {
 				Contestant contestant = new Contestant();
-				User user = new User();
-				contestant.setContestantImageDir(resultSet.getString("wc.contestant_image_dir"));
-				user.setUserName(resultSet.getString("wu.user_name"));
-				user.setUserEmail(resultSet.getString("wu.user_email"));
-				user.setUserFirstName(resultSet.getString("wu.user_first_name"));
-				user.setUserLastName(resultSet.getString("wu.user_last_name"));
-				user.setUserGender(resultSet.getString("wu.user_gender"));
-				user.setUserDob(resultSet.getDate("wu.user_dob"));
-				user.setUserJoinDate(resultSet.getDate("wu.user_joined_date"));
-				contestants.add(new DoubleObject<Contestant,User>(contestant,user));
+				contestant.setUserName(resultSet.getString("wu.user_name"));
 				
-				IO.println(user.getUserName() + " " + user.getUserFirstName() + " " + user.getUserLastName());
+				contestant.setContestantImageDir(resultSet.getString("wc.contestant_image_dir"));
+				contestant.setUserName(resultSet.getString("wu.user_name"));
+				contestant.setUserEmail(resultSet.getString("wu.user_email"));
+				contestant.setUserFirstName(resultSet.getString("wu.user_first_name"));
+				contestant.setUserLastName(resultSet.getString("wu.user_last_name"));
+				contestant.setUserGender(resultSet.getString("wu.user_gender"));
+				contestant.setUserDob(resultSet.getDate("wu.user_dob"));
+				contestant.setUserJoinDate(resultSet.getDate("wu.user_joined_date"));
+				contestants.add(contestant);
+				
+				IO.println(contestant.getUserName() + " " + contestant.getUserFirstName() + " " + contestant.getUserLastName());
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
