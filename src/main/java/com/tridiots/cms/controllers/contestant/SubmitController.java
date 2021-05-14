@@ -45,7 +45,7 @@ public class SubmitController extends HttpServlet {
 		
 		try {
 			int conId = Integer.parseInt(request.getParameter("conid"));
-			
+			submission.setSubmissionPoemTitle(request.getParameter("poemTitle"));
 			submission.setSubmissionPoemEn(request.getParameter("engPoem"));
 			submission.setSubmissionPoemKom(request.getParameter("komPoem"));
 			submission.setContestantId(conId);
