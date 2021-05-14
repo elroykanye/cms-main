@@ -5,8 +5,8 @@ import java.sql.Date;
 public class Submission {
 	private int submissionId;
 	private Date submissionDate;
-	private String submissionFileEn;
-	private String submissionFileKom;
+	private String submissionPoemEn;
+	private String submissionPoemKom;
 	private int contestantId;
 	private double submissionFinalGrade;
 	public int getSubmissionId() {
@@ -22,16 +22,16 @@ public class Submission {
 		this.submissionDate = submissionDate;
 	}
 	public String getSubmissionFileEn() {
-		return submissionFileEn;
+		return submissionPoemEn;
 	}
 	public void setSubmissionFileEn(String submissionFileEn) {
-		this.submissionFileEn = submissionFileEn;
+		this.submissionPoemEn = submissionFileEn;
 	}
 	public String getSubmissionFileKom() {
-		return submissionFileKom;
+		return submissionPoemKom;
 	}
 	public void setSubmissionFileKom(String submissionFileKom) {
-		this.submissionFileKom = submissionFileKom;
+		this.submissionPoemKom = submissionFileKom;
 	}
 	public int getContestantId() {
 		return contestantId;
