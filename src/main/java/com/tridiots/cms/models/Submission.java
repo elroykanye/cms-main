@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Submission {
 	private int submissionId;
 	private Date submissionDate;
+	private String submissionPoemTitle;
 	private String submissionPoemEn;
 	private String submissionPoemKom;
 	private int contestantId;
@@ -20,6 +21,12 @@ public class Submission {
 	}
 	public void setSubmissionDate(Date submissionDate) {
 		this.submissionDate = submissionDate;
+	}
+	public String getSubmissionPoemTitle() {
+		return submissionPoemTitle.equals(null) ? submissionPoemTitle: "My Poem";
+	}
+	public void setSubmissionPoemTitle(String submissionPoemTitle) {
+		this.submissionPoemTitle = submissionPoemTitle;
 	}
 	public String getSubmissionPoemEn() {
 		return submissionPoemEn;
