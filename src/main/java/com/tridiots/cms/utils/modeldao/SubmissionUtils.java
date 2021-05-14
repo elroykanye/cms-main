@@ -21,16 +21,18 @@ public class SubmissionUtils {
 	
 	public static Message addSubmission(Submission submission) {
 		String sql = "INSERT INTO "
-				+ "wtaxy_submission(submission_poem_english, submission_poem_kom, contestant_id, submission_final_grade)"
+				+ "wtaxy_submission(submission_poem_english, submission_poem_kom, contestant_id, submission_final_grade, submission_poem_title)"
 				+ " VALUES (?,?,?,?)";
 		Message message = new Message("Submission unsuccessful", false);
 		try {
 			conn = ConnectionUtils.openConnection();
 			prepStatement = conn.prepareStatement(sql);
-			prepStatement.setNString(1,submission.getSubmissionPoemEn());
+			
+			prepStatement.setString(1,submission.getSubmissionPoemEn());
 			prepStatement.setString(2, submission.getSubmissionPoemKom());
 			prepStatement.setInt(3, submission.getContestantId());
 			prepStatement.setDouble(4, submission.getSubmissionFinalGrade());
+			prepStatement.setString(5, submission.getSubmissionPoemTitle());
 			
 			prepStatement.execute();
 			message.setMessage("Submission successful"); message.setFlag(true);
@@ -55,6 +57,7 @@ public class SubmissionUtils {
 			resultSet = prepStatement.executeQuery();
 			if(resultSet.next()) {
 				submission.setSubmissionId(resultSet.getInt("submission_id"));
+				submission.setSubmissionPoemTitle(resultSet.getString("submission_poem_title"));
 				submission.setSubmissionPoemEn(resultSet.getString("submission_poem_english"));
 				submission.setSubmissionPoemKom(resultSet.getString("submission_poem_kom"));
 				submission.setSubmissionDate(resultSet.getDate("submission_date"));
@@ -83,6 +86,7 @@ public class SubmissionUtils {
 			while(resultSet.next()) {
 				Submission submission = new Submission();
 				submission.setSubmissionId(resultSet.getInt("submission_id"));
+				submission.setSubmissionPoemTitle(resultSet.getString("submission_poem_title"));
 				submission.setSubmissionPoemEn(resultSet.getString("submission_poem_english"));
 				submission.setSubmissionPoemKom(resultSet.getString("submission_poem_kom"));
 				submission.setSubmissionDate(resultSet.getDate("submission_date"));
