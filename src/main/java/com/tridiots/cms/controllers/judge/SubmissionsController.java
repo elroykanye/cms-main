@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.tridiots.cms.models.Contestant;
 import com.tridiots.cms.models.Submission;
 import com.tridiots.cms.models.User;
 import com.tridiots.cms.utils.modeldao.ContestantUtils;
@@ -16,7 +17,6 @@ import com.tridiots.cms.utils.modeldao.UserUtils;
 /**
  * Servlet implementation class SubmissionsController
  */
-@WebServlet("/SubmissionsController")
 public class SubmissionsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,7 +35,17 @@ public class SubmissionsController extends HttpServlet {
 		String actionSource = request.getParameter("action");
 		if(actionSource.equals("view")) {
 			int submissionId = Integer.parseInt(request.getParameter("subid"));
+			int conid = Integer.parseInt(request.getParameter("conid"));
+			
+			User user = UserUtils.getUser(ContestantUtils.getUserIdFromConId(conid));
+			Contestant contestant = new Contestant();
+			contestant.setContestantId(conid);
+			contestant.setUserFirstName(user.getUserFirstName());
+			contestant.setUserLastName(user.getUserLastName());
+			contestant.setUserName(user.getUserName());
+			
 			request.setAttribute("submission", SubmissionUtils.getSubmission(submissionId));
+			request.setAttribute("contestant", contestant);
 			request.getRequestDispatcher("/user/judge/submission.jsp").forward(request, response);
 		}
 	}
