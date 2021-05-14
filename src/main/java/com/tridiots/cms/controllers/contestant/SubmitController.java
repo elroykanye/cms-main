@@ -1,7 +1,6 @@
 package com.tridiots.cms.controllers.contestant;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,19 +8,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.tridiots.cms.kanye.IO;
+import com.tridiots.cms.message.Message;
 import com.tridiots.cms.models.Submission;
+import com.tridiots.cms.utils.modeldao.SubmissionUtils;
 
 /**
  * Servlet implementation class Submission
  */
 @WebServlet("/Submission")
-public class SubmissionController extends HttpServlet {
+public class SubmitController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SubmissionController() {
+    public SubmitController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,21 +32,7 @@ public class SubmissionController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String uploadsDir = "";
-		Submission submission = new Submission();
 		
-		try {
-			int conId = Integer.parseInt(request.getParameter("cid"));
-			
-			submission.setSubmissionDate((java.sql.Date) new Date());
-			submission.setSubmissionFileEn(uploadsDir);
-			submission.setSubmissionFileKom(uploadsDir);
-			submission.setContestantId(conId);
-			submission.setSubmissionFinalGrade(0);
-		} catch(NumberFormatException exception) {
-			exception.printStackTrace();
-		}
-	
 		
 		
 	}
@@ -53,8 +41,31 @@ public class SubmissionController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		Submission submission = new Submission();
+		
+		try {
+			int conId = Integer.parseInt(request.getParameter("conid"));
+			
+			submission.setSubmissionPoemEn(request.getParameter("engPoem"));
+			submission.setSubmissionPoemKom(request.getParameter("komPoem"));
+			submission.setContestantId(conId);
+			submission.setSubmissionFinalGrade(0);
+			
+			Message submissionAdded = SubmissionUtils.addSubmission(submission);
+			if(submissionAdded.getFlag()) {
+				IO.println(submissionAdded.getMessage());
+			} else {
+				IO.println(submissionAdded.getMessage());
+				request.setAttribute("errorMessage", submissionAdded.getMessage());
+				request.getRequestDispatcher("/user/submit.jsp").forward(request, response);
+				
+			}
+			
+		} catch(NumberFormatException exception) {
+			exception.printStackTrace();
+		}
+	
+		
 	}
 
 }
