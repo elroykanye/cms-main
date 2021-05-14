@@ -103,6 +103,25 @@ public class ContestantUtils {
 		
 	}
 	
+	public static int getUserIdFromConId(int conid) {
+		int uid = -1;
+		String query = "SELECT contestant_id, user_id FROM wtaxy_contestant WHERE contestant_id=?";
+		try {
+			conn = ConnectionUtils.openConnection();
+			prepStatement = conn.prepareStatement(query);
+			prepStatement.setInt(1, conid);
+			resultSet = prepStatement.executeQuery();
+			if(resultSet.next()) uid = resultSet.getInt("user_id");
+			else uid = -1;
+		} catch(SQLException exception) {
+			exception.printStackTrace();
+		} finally {
+			QueryUtils.closeQueryObjects(prepStatement, resultSet);
+			ConnectionUtils.closeConnection(conn);
+		}
+		return uid;
+	}
+	
 	public static Contestant getContestant (int uid) {
 		Message foundContestant = findContestant(uid);
 		Contestant contestant = new Contestant();
