@@ -2,8 +2,10 @@ package com.tridiots.cms.utils.modeldao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-// import java.sql.Statement;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.tridiots.cms.message.Message;
 import com.tridiots.cms.models.Submission;
@@ -12,7 +14,8 @@ import com.tridiots.cms.utils.dbutils.QueryUtils;
 
 public class SubmissionUtils {
 	private static PreparedStatement prepStatement = null;
-	// private static Statement statement = null;
+	private static Statement statement = null;
+	private static ResultSet resultSet = null;
 	private static Connection conn = null;
 	
 	
@@ -38,7 +41,63 @@ public class SubmissionUtils {
 			ConnectionUtils.closeConnection(conn);
 		}
 		return message;
-		
 	}
 
+	public static Submission getSubmission(int submissionId) {
+		Submission submission = new Submission();
+		
+		String query = "SELECT * FROM wtaxy_submission WHERE submission_id=?";
+		
+		try {
+			conn = ConnectionUtils.openConnection();
+			prepStatement = conn.prepareStatement(query);
+			prepStatement.setInt(1, submissionId);
+			resultSet = prepStatement.executeQuery();
+			if(resultSet.next()) {
+				submission.setSubmissionId(resultSet.getInt("submission_id"));
+				submission.setSubmissionPoemEn(resultSet.getString("submission_poem_english"));
+				submission.setSubmissionPoemKom(resultSet.getString("submission_poem_kom"));
+				submission.setSubmissionDate(resultSet.getDate("submission_date"));
+				submission.setSubmissionFinalGrade(resultSet.getDouble("submission_grade"));
+				submission.setContestantId(resultSet.getInt("contestant_id"));
+			} else {
+				submission = null;
+			}
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		} finally {
+			QueryUtils.closeQueryObjects(prepStatement, resultSet);
+			ConnectionUtils.closeConnection(conn);
+		}
+		
+		return submission;
+	}
+	public static ArrayList<Submission> getSubmissions () {
+		ArrayList<Submission> submissions = new ArrayList<>();
+		
+		String query = "SELECT * FROM wtaxy_submission";
+		try {
+			conn = ConnectionUtils.openConnection();
+			statement = conn.createStatement();
+			resultSet = statement.executeQuery(query);
+			while(resultSet.next()) {
+				Submission submission = new Submission();
+				submission.setSubmissionId(resultSet.getInt("submission_id"));
+				submission.setSubmissionPoemEn(resultSet.getString("submission_poem_english"));
+				submission.setSubmissionPoemKom(resultSet.getString("submission_poem_kom"));
+				submission.setSubmissionDate(resultSet.getDate("submission_date"));
+				submission.setSubmissionFinalGrade(resultSet.getDouble("submission_grade"));
+				submission.setContestantId(resultSet.getInt("contestant_id"));
+				
+				submissions.add(submission);
+			}
+		} catch(SQLException exception) {
+			exception.printStackTrace();
+		} finally {
+			QueryUtils.closeQueryObjects(statement, resultSet);
+			ConnectionUtils.closeConnection(conn);
+		}
+		return submissions;
+		
+	}
 }
