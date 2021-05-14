@@ -131,11 +131,11 @@
     	<url-pattern>/user/apply-contest</url-pattern>
     </servlet-mapping>
     <servlet>
-    	<servlet-name>Submission</servlet-name>
-    	<servlet-class>com.tridiots.cms.controllers.contestant.Submission</servlet-class>
+    	<servlet-name>Submit</servlet-name>
+    	<servlet-class>com.tridiots.cms.controllers.contestant.SubmitController</servlet-class>
     </servlet>
     <servlet-mapping>
-    	<servlet-name>Submissiont</servlet-name>
-    	<url-pattern>/user/submission</url-pattern>
+    	<servlet-name>Submit</servlet-name>
+    	<url-pattern>/user/submit</url-pattern>
     </servlet-mapping>
 </web-app>
