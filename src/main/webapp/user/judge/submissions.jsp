@@ -1,4 +1,21 @@
-﻿<!DOCTYPE html>
+﻿<%--
+    Document   : submissions
+    Created on : Apr 30, 2021, 12:22:16 AM
+    Author     : kanye
+--%>
+
+<%@ page import="com.tridiots.cms.kanye.IO"%>
+<%@ page import="com.tridiots.cms.models.Submission" %>
+<%@ page import="com.tridiots.cms.utils.modeldao.SubmissionUtils" %>
+<%@ page import="com.tridiots.cms.utils.modeldao.ContestantUtils" %>
+<%@ page import="com.tridiots.cms.utils.modeldao.UserUtils" %>
+<%@ page import="com.tridiots.cms.*" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+    
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -12,6 +29,10 @@
     <link rel="stylesheet" href="../../assets/fonts/fontawesome5-overrides.min.css">
     <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
+
+<%
+ArrayList<Submission> submissions = SubmissionUtils.getSubmissions();
+%>
 
 <body id="page-top">
     <div id="wrapper">
@@ -111,29 +132,39 @@
                                 <table class="table my-0" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>Username</th>
-                                            <th>Kom</th>
-                                            <th>English</th>
-                                            <th>Age</th>
+                                            <th>User</th>
+                                            <th>Poem Title</th>
                                             <th>Submission Date</th>
+                                            <th>Final Grade</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><img class="rounded-circle mr-2" width="30" height="30" src="avatars/avatar1.jpeg">elroykanye</td>
-                                            <td>{{file}}</td>
-                                            <td>{{file}}</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                            <td>
-                                                <form>
-                                                    <div class="form-row">
-                                                        <div class="col"><button class="btn btn-primary" type="button">View</button></div>
-                                                    </div>
-                                                </form>
-                                            </td>
-                                        </tr>
+                                    	
+                                    	<% if (submissions != null) {
+                                    		for(Submission submission : submissions) {
+                                    			int conid = submission.getContestantId();
+                                    			int uid = ContestantUtils.getUserIdFromConId(conid);
+                                    			String username = (UserUtils.getUser(uid)).getUserName();
+                                    			%>
+                                    			<tr>
+                                                	<td><img class="rounded-circle mr-2" width="30" height="30" src="avatars/avatar1.jpeg"><%=username %></td>
+                                                	<td><%=submission.getSubmissionPoemTitle() %></td>
+                                                	<td><%=submission.getSubmissionDate() %></td>
+                                                	<td><%=submission.getSubmissionFinalGrade() %></td>
+                                                	<td>
+                                                    	<form action="submission" method="get">
+                                                        	<div class="form-row">
+                                                        		<input type="hidden" name="conid" value="<%=conid%>">
+                                                        		<input type="hidden" name="uid" value="<%=uid%>">
+                                                        		<input type="hidden" name="" value="">
+                                                            	<div class="col"><button class="btn btn-primary" type="submit" name="action" value="view">View</button></div>
+                                                        	</div>
+                                                    	</form>
+                                                	</td>
+                                            	</tr>
+                                    		<% }
+                                    	} %>
                                     </tbody>
                                     <tfoot>
                                         <tr>
