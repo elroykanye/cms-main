@@ -90,7 +90,7 @@ public class SubmissionUtils {
 				submission.setSubmissionPoemEn(resultSet.getString("submission_poem_english"));
 				submission.setSubmissionPoemKom(resultSet.getString("submission_poem_kom"));
 				submission.setSubmissionDate(resultSet.getDate("submission_date"));
-				submission.setSubmissionFinalGrade(resultSet.getDouble("submission_grade"));
+				submission.setSubmissionFinalGrade(resultSet.getDouble("submission_final_grade"));
 				submission.setContestantId(resultSet.getInt("contestant_id"));
 				
 				submissions.add(submission);

@@ -3,7 +3,15 @@
     Created on : Apr 30, 2021, 12:22:16 AM
     Author     : kanye
 --%>
-
+<%@ page import="com.tridiots.cms.models.Submission" %>
+<%@ page import="com.tridiots.cms.models.User" %>
+<%@ page import="com.tridiots.cms.utils.modeldao.SubmissionUtils" %>
+<%@ page import="com.tridiots.cms.utils.modeldao.ContestantUtils" %>
+<%@ page import="com.tridiots.cms.utils.modeldao.UserUtils" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 
 <!DOCTYPE html>
 <html>
@@ -19,6 +27,13 @@
     <link rel="stylesheet" href="../../assets/fonts/fontawesome5-overrides.min.css">
     <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
+
+<%
+Submission thisSubmission = (Submission) request.getAttribute("submission");
+int conid = thisSubmission.getContestantId();
+int uid = ContestantUtils.getUserIdFromConId(conid);
+User thisUser = UserUtils.getUser(uid);
+%>
 
 <body id="page-top">
     <div id="wrapper">
@@ -148,7 +163,7 @@
             </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © CMS 2021</span></div>
+                    <div class="text-center my-auto copyright"><span>Copyright Â© CMS 2021</span></div>
                 </div>
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>

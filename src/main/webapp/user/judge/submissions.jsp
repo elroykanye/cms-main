@@ -153,14 +153,12 @@ ArrayList<Submission> submissions = SubmissionUtils.getSubmissions();
                                                 	<td><%=submission.getSubmissionDate() %></td>
                                                 	<td><%=submission.getSubmissionFinalGrade() %></td>
                                                 	<td>
-                                                    	<form action="submission" method="get">
-                                                        	<div class="form-row">
-                                                        		<input type="hidden" name="conid" value="<%=conid%>">
-                                                        		<input type="hidden" name="uid" value="<%=uid%>">
-                                                        		<input type="hidden" name="" value="">
-                                                            	<div class="col"><button class="btn btn-primary" type="submit" name="action" value="view">View</button></div>
-                                                        	</div>
-                                                    	</form>
+                                                		<form action="submissions" method="get">
+                                                    		<div class="form-row">
+                                                    			<input type="hidden" name="subid" value="<%=submission.getSubmissionId() %>">
+                                                        		<div class="col"><button class="btn btn-primary" type="submit" name="action" value="view">View</button></div>
+                                                    		</div>
+                                                		</form>
                                                 	</td>
                                             	</tr>
                                     		<% }
@@ -168,11 +166,10 @@ ArrayList<Submission> submissions = SubmissionUtils.getSubmissions();
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td><strong>Name</strong></td>
-                                            <td><strong>Kom</strong></td>
-                                            <td><strong>English</strong></td>
-                                            <td><strong>Age</strong></td>
-                                            <td><strong>Start date</strong></td>
+                                            <td><strong>User</strong></td>
+                                            <td><strong>Poem Title</strong></td>
+                                            <td><strong>Submission Date</strong></td>
+                                            <td><strong>Final Grade</strong></td>
                                             <td><strong>Action</strong></td>
                                         </tr>
                                     </tfoot>
