@@ -151,7 +151,11 @@ public class ContestantUtils {
 				exception.printStackTrace();
 			}
 		} 
-		
+		return contestant;
+	}
+	
+	public static Contestant getContestant(User user) {
+		Contestant contestant = getContestant(user.getUserId());
 		return contestant;
 	}
 	

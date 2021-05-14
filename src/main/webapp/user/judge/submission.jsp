@@ -6,6 +6,7 @@
 <%@ page import="com.tridiots.cms.models.Submission" %>
 <%@ page import="com.tridiots.cms.models.User" %>
 <%@ page import="com.tridiots.cms.models.Contestant" %>
+<%@ page import="com.tridiots.cms.models.Judge" %>
 <%@ page import="com.tridiots.cms.utils.modeldao.SubmissionUtils" %>
 <%@ page import="com.tridiots.cms.utils.modeldao.ContestantUtils" %>
 <%@ page import="com.tridiots.cms.utils.modeldao.UserUtils" %>
@@ -32,6 +33,8 @@
 <%
 Submission thisSubmission = (Submission) request.getAttribute("submission");
 Contestant thisContestant = (Contestant) request.getAttribute("contestant");
+Judge loggedInJudge = (Judge) request.getSession().getAttribute("loggedInJudge");
+
 %>
 
 <body id="page-top">
@@ -137,6 +140,55 @@ Contestant thisContestant = (Contestant) request.getAttribute("contestant");
                                 </div>
                             </div>
                             <div class="row" style="padding-top:32px; padding-bottom:32px;">
+                            	<%
+                            		if(loggedInJudge.getJudgeLevel() == 404) {
+                            			%>
+                            				<div class="col">
+                                    			<form class="text-center" action="submissions" method="post">
+                                    				<input type="hidden" name="jid" value="<%=loggedInJudge.getJudgeId() %>">
+                                        			<div class="form-group score-input-form-group"><input class="form-control" type="number" name="score" value="0" min="0" max="100"></div>
+                                        			
+                                        			<%
+                                        			String message = (String) request.getAttribute("message");
+                                        			if(message != null) {
+                                        				%>
+                                        					<div class="form-group score-input-form-group"><span>message</span></div>
+                                        				<% } %>
+                                        			
+                                        			<div class="form-group score-submit-form-group"><button class="btn btn-primary btn-user" type="submit" name="action" value="submitScore" style="background: var(--indigo);">Submit Score</button></div>
+                                    			</form>
+                                			</div>
+                            			
+                            			<% 
+                            		} else if(loggedInJudge.getJudgeLevel() == 202) {
+                            			%>
+                            				<div class="col">
+                                    			<form class="text-center">
+                                        			<div class="form-group score-input-form-group"><input class="form-control" type="text"></div>
+                                        			<div class="form-group score-submit-form-group"><button class="btn btn-primary btn-user" type="button" style="background: var(--indigo);">Submit Score</button></div>
+                                    			</form>
+                                			</div>
+                                			<div class="col">
+                                    			<form class="text-center">
+                                        			<div class="form-group score-input-form-group"><input class="form-control" type="text"></div>
+                                        			<div class="form-group score-submit-form-group"><button class="btn btn-primary btn-user" type="button" style="background: var(--indigo);">Submit Score</button></div>
+                                    			</form>
+                                			</div>
+                                			<div class="col">
+                                    			<form class="text-center">
+                                        			<div class="form-group score-input-form-group"><input class="form-control" type="text"></div>
+                                       			 	<div class="form-group score-submit-form-group"><button class="btn btn-primary btn-user" type="button" style="background: var(--indigo);">Submit Score</button></div>
+                                    			</form>
+                                			</div>
+                            			<%
+                            		} else {
+                            			request.getSession().setAttribute("errorMessage", "Fake judge account");
+                            			request.getRequestDispatcher("/logout").forward(request, response);
+                            		}
+                            	%>
+                                
+                                
+                                <!-- 
                                 <div class="col">
                                     <form class="text-center">
                                         <div class="form-group score-input-form-group"><input class="form-control" type="text"></div>
@@ -155,6 +207,9 @@ Contestant thisContestant = (Contestant) request.getAttribute("contestant");
                                         <div class="form-group score-submit-form-group"><button class="btn btn-primary btn-user" type="button" style="background: var(--indigo);">Submit Score</button></div>
                                     </form>
                                 </div>
+                                 -->
+                                 
+                                 
                             </div>
                         </div>
                     </div>

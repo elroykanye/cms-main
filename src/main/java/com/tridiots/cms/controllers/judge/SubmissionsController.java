@@ -47,6 +47,10 @@ public class SubmissionsController extends HttpServlet {
 			request.setAttribute("submission", SubmissionUtils.getSubmission(submissionId));
 			request.setAttribute("contestant", contestant);
 			request.getRequestDispatcher("/user/judge/submission.jsp").forward(request, response);
+		} else if (actionSource.equals("submitScore")) {
+			int judgeId = Integer.parseInt(request.getParameter("jid"));
+			double score = Double.parseDouble(request.getParameter("score"));
+			
 		}
 	}
 
