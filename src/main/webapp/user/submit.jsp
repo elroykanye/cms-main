@@ -127,6 +127,8 @@ String errorMessage = (String) request.getAttribute("errorMessage");
                                         <div class="col-sm-6"><input class="form-control form-control-user" type="text" id="lastName" placeholder="Last Name" name="last_name" value="<%=loggedInContestant.getUserLastName() %>" required=""></div>
                                     </div>
                                     <div class="form-group"><input class="form-control form-control-user" type="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Email Address" name="email" value="<%=loggedInContestant.getUserEmail() %>" required=""></div>
+                                    <div class="form-group"><input class="form-control form-control-user" type="text" id="inputPoemTitle" aria-describedby="emailHelp" placeholder="My Poem" name="poemTitle" value="" required=""></div>
+                                    
                                     <div class="form-group row" id="file-upload-wrapper">
                                         <div class="container">
                                             <h5>Poem in Itangi-Kom</h5><textarea class="form-control text-area-submit" cols="100%" rows="12" name="komPoem"></textarea>
