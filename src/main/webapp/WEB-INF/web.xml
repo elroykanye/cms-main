@@ -144,6 +144,6 @@
     </servlet>
     <servlet-mapping>
     	<servlet-name>Submissions</servlet-name>
-    	<url-pattern>/judge/submissions</url-pattern>
+    	<url-pattern>/user/judge/submissions</url-pattern>
     </servlet-mapping>
 </web-app>
