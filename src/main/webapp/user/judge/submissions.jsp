@@ -155,6 +155,8 @@ ArrayList<Submission> submissions = SubmissionUtils.getSubmissions();
                                                 	<td>
                                                 		<form action="submissions" method="get">
                                                     		<div class="form-row">
+                                                    			<input type="hidden" name="conid" value="<%=conid%>">
+                                                    			<input type="hidden" name="uid" value="<%=uid %>">
                                                     			<input type="hidden" name="subid" value="<%=submission.getSubmissionId() %>">
                                                         		<div class="col"><button class="btn btn-primary" type="submit" name="action" value="view">View</button></div>
                                                     		</div>

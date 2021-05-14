@@ -5,6 +5,7 @@
 --%>
 <%@ page import="com.tridiots.cms.models.Submission" %>
 <%@ page import="com.tridiots.cms.models.User" %>
+<%@ page import="com.tridiots.cms.models.Contestant" %>
 <%@ page import="com.tridiots.cms.utils.modeldao.SubmissionUtils" %>
 <%@ page import="com.tridiots.cms.utils.modeldao.ContestantUtils" %>
 <%@ page import="com.tridiots.cms.utils.modeldao.UserUtils" %>
@@ -30,9 +31,7 @@
 
 <%
 Submission thisSubmission = (Submission) request.getAttribute("submission");
-int conid = thisSubmission.getContestantId();
-int uid = ContestantUtils.getUserIdFromConId(conid);
-User thisUser = UserUtils.getUser(uid);
+Contestant thisContestant = (Contestant) request.getAttribute("contestant");
 %>
 
 <body id="page-top">
@@ -113,18 +112,18 @@ User thisUser = UserUtils.getUser(uid);
                     <h3 class="text-dark mb-4">Submission</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">{UserFirstName} {UserLastName}</p>
+                            <p class="text-primary m-0 font-weight-bold"><%= thisContestant.getUserFirstName().concat(" ").concat(thisContestant.getUserLastName()) %></p>
                         </div>
                         <div class="card-body">
                             <div>
-                                <h3>{Poem Title}</h3>
+                                <h3><%=thisSubmission.getSubmissionPoemTitle() %></h3>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="card">
                                         <div class="card-body">
                                             <h4 class="card-title">Kom version</h4>
-                                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><a class="card-link" href="#">Link</a>
+                                            <p class="card-text"><%=thisSubmission.getSubmissionPoemKom() %></p><a class="card-link" href="#">Link</a>
                                         </div>
                                     </div>
                                 </div>
@@ -132,7 +131,7 @@ User thisUser = UserUtils.getUser(uid);
                                     <div class="card">
                                         <div class="card-body">
                                             <h4 class="card-title">English</h4>
-                                            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><a class="card-link" href="#">Link</a>
+                                            <p class="card-text"><%=thisSubmission.getSubmissionPoemEn() %></p><a class="card-link" href="#">Link</a>
                                         </div>
                                     </div>
                                 </div>
