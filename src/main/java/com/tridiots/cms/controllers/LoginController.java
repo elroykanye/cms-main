@@ -1,21 +1,17 @@
 package com.tridiots.cms.controllers;
 
-import com.tridiots.cms.kanye.IO;
 import com.tridiots.cms.message.Message;
 import com.tridiots.cms.models.Contestant;
+import com.tridiots.cms.models.Judge;
 import com.tridiots.cms.models.User;
 import com.tridiots.cms.utils.modeldao.ContestantUtils;
+import com.tridiots.cms.utils.modeldao.JudgeUtils;
 import com.tridiots.cms.utils.modeldao.UserUtils;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URI;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,7 +64,8 @@ public class LoginController extends Controller{
             		request.getSession().setAttribute("loggedInAdmin", user);
             		break;
             	case 222:
-            		request.getSession().setAttribute("loggedInJudge", user);
+            		Judge loggedInJudge = JudgeUtils.getJudge(user.getUserId());
+            		request.getSession().setAttribute("loggedInJudge", loggedInJudge);
             		break;
             	case 333:
             		Contestant loggedInContestant = ContestantUtils.getContestant(user.getUserId());
