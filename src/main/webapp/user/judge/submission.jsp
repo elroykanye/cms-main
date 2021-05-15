@@ -146,6 +146,7 @@ Judge loggedInJudge = (Judge) request.getSession().getAttribute("loggedInJudge")
                             				<div class="col">
                                     			<form class="text-center" action="submissions" method="post">
                                     				<input type="hidden" name="jid" value="<%=loggedInJudge.getJudgeId() %>">
+                                    				<input type="hidden" name="subid" value="<%=thisSubmission.getSubmissionId() %>">
                                         			<div class="form-group score-input-form-group"><input class="form-control" type="number" name="score" value="0" min="0" max="100"></div>
                                         			
                                         			<%

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.tridiots.cms.models.Contestant;
+import com.tridiots.cms.models.Grade;
 import com.tridiots.cms.models.Submission;
 import com.tridiots.cms.models.User;
 import com.tridiots.cms.utils.modeldao.ContestantUtils;
@@ -50,7 +51,7 @@ public class SubmissionsController extends HttpServlet {
 		} else if (actionSource.equals("submitScore")) {
 			int judgeId = Integer.parseInt(request.getParameter("jid"));
 			double score = Double.parseDouble(request.getParameter("score"));
-			
+			Grade grade = new Grade();
 		}
 	}
 
