@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.tridiots.cms.kanye.IO;
 import com.tridiots.cms.message.Message;
 import com.tridiots.cms.models.Submission;
 import com.tridiots.cms.utils.dbutils.ConnectionUtils;
@@ -23,7 +24,7 @@ public class SubmissionUtils {
 	public static Message addSubmission(Submission submission) {
 		String sql = "INSERT INTO "
 				+ "wtaxy_submission(submission_poem_english, submission_poem_kom, contestant_id, submission_final_grade, submission_poem_title)"
-				+ " VALUES (?,?,?,?)";
+				+ " VALUES (?,?,?,?,?)";
 		Message message = new Message("Submission unsuccessful", false);
 		try {
 			conn = ConnectionUtils.openConnection();
@@ -82,8 +83,8 @@ public class SubmissionUtils {
 		String query = "SELECT * FROM wtaxy_submission";
 		try {
 			conn = ConnectionUtils.openConnection();
-			statement = conn.createStatement();
-			resultSet = statement.executeQuery(query);
+			prepStatement = conn.prepareStatement(query);
+			ResultSet resultSet = prepStatement.executeQuery();
 			while(resultSet.next()) {
 				Submission submission = new Submission();
 				submission.setSubmissionId(resultSet.getInt("submission_id"));
@@ -130,8 +131,9 @@ public class SubmissionUtils {
 	}
 	
 	public static void updateSubmissionFinalGrade(int subId) {
-		String sql = "UPDATE wtaxy_submission SET submission_final_grade=? WHERE submission_id=";
+		String sql = "UPDATE wtaxy_submission SET submission_final_grade=? WHERE submission_id=?";
 		double updatedGrade = calcSubmissionFinalGrade(subId);
+		IO.println(updatedGrade);
 		try {
 			conn = ConnectionUtils.openConnection();
 			prepStatement = conn.prepareStatement(sql);
@@ -168,7 +170,7 @@ public class SubmissionUtils {
 	
 	private static double calcAverage(ArrayList<Integer> values) {
 		if(values.size() == 0) return 0;
-		int sum = 0;
+		double sum = 0.0;
 		for(Integer val : values) {
 			sum += val;
 		}
