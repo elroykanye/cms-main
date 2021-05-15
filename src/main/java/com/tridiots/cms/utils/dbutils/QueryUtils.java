@@ -22,19 +22,10 @@ public class QueryUtils {
             if(resultSet != null) resultSet.close();
         } catch (SQLException exception) {exception.printStackTrace();}
     }
-    public static void closeQueryObjects(
-            PreparedStatement preparedStatement,
-            Statement statement,
-            ResultSet resultSet) {
-        try {
-            if(preparedStatement != null) preparedStatement.close();
-        } catch (SQLException exception) {exception.printStackTrace();}
-        try {
-            if(statement != null) statement.close();
-        } catch (SQLException exception) {exception.printStackTrace();}
-        try {
-            if(resultSet != null) resultSet.close();
-        } catch (SQLException exception) {exception.printStackTrace();}
+    public static void closeQueryObjects(PreparedStatement preparedStatement,Statement statement, ResultSet resultSet) {
+    	closeQueryObject(preparedStatement);
+    	closeQueryObject(statement);
+    	closeQueryObject(resultSet);
     }
 
     public static void closeQueryObject(PreparedStatement preparedStatement) {
@@ -54,4 +45,8 @@ public class QueryUtils {
             if(resultSet != null) resultSet.close();
         } catch (SQLException exception) {exception.printStackTrace();}
     }
+	public static void closeQueryObject(PreparedStatement preparedStatement, Statement statement) {
+		closeQueryObject(preparedStatement);
+    	closeQueryObject(statement);
+	}
 }
