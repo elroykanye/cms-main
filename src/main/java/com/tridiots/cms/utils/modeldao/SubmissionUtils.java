@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.mysql.cj.jdbc.result.ResultSetImpl;
 import com.tridiots.cms.message.Message;
 import com.tridiots.cms.models.Submission;
 import com.tridiots.cms.utils.dbutils.ConnectionUtils;
