@@ -4,9 +4,11 @@
     Author     : kanye
 --%>
 <%@ page import="com.tridiots.cms.models.Submission" %>
+<%@ page import="com.tridiots.cms.models.Grade" %>
 <%@ page import="com.tridiots.cms.models.User" %>
 <%@ page import="com.tridiots.cms.models.Contestant" %>
 <%@ page import="com.tridiots.cms.models.Judge" %>
+<%@ page import="com.tridiots.cms.utils.modeldao.GradeUtils" %>
 <%@ page import="com.tridiots.cms.utils.modeldao.SubmissionUtils" %>
 <%@ page import="com.tridiots.cms.utils.modeldao.ContestantUtils" %>
 <%@ page import="com.tridiots.cms.utils.modeldao.UserUtils" %>
@@ -142,18 +144,24 @@ Judge loggedInJudge = (Judge) request.getSession().getAttribute("loggedInJudge")
                             <div class="row" style="padding-top:32px; padding-bottom:32px;">
                             	<%
                             		if(loggedInJudge.getJudgeLevel() == 404) {
+                            			int jid = loggedInJudge.getJudgeId();
+                            			int subid = thisSubmission.getSubmissionId();
+                            			int conid = thisContestant.getContestantId();
+                            			Grade grade = GradeUtils.getGrade(jid, subid);
+                            			
                             			%>
                             				<div class="col">
                                     			<form class="text-center" action="submissions" method="post">
-                                    				<input type="hidden" name="jid" value="<%=loggedInJudge.getJudgeId() %>">
-                                    				<input type="hidden" name="subid" value="<%=thisSubmission.getSubmissionId() %>">
-                                        			<div class="form-group score-input-form-group"><input class="form-control" type="number" name="score" value="0" min="0" max="100"></div>
+                                    				<input type="hidden" name="jid" value="<%=jid %>">
+                                    				<input type="hidden" name="subid" value="<%=subid %>">
+                                    				<input type="hidden" name="conid" value="<%=conid %>">
+                                        			<div class="form-group score-input-form-group"><input class="form-control" type="number" name="score" value="<%=grade == null? 0 : grade.getSubmissionGrade() %>" min="0" max="100"></div>
                                         			
                                         			<%
                                         			String message = (String) request.getAttribute("message");
                                         			if(message != null) {
                                         				%>
-                                        					<div class="form-group score-input-form-group"><span>message</span></div>
+                                        					<div class="form-group score-input-form-group"><span><%=message %></span></div>
                                         				<% } %>
                                         			
                                         			<div class="form-group score-submit-form-group"><button class="btn btn-primary btn-user" type="submit" name="action" value="submitScore" style="background: var(--indigo);">Submit Score</button></div>

@@ -7,11 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.tridiots.cms.message.Message;
 import com.tridiots.cms.models.Contestant;
 import com.tridiots.cms.models.Grade;
 import com.tridiots.cms.models.Submission;
 import com.tridiots.cms.models.User;
 import com.tridiots.cms.utils.modeldao.ContestantUtils;
+import com.tridiots.cms.utils.modeldao.GradeUtils;
 import com.tridiots.cms.utils.modeldao.SubmissionUtils;
 import com.tridiots.cms.utils.modeldao.UserUtils;
 
@@ -34,6 +36,7 @@ public class SubmissionsController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String actionSource = request.getParameter("action");
+		Message message = null;
 		if(actionSource.equals("view")) {
 			int submissionId = Integer.parseInt(request.getParameter("subid"));
 			int conid = Integer.parseInt(request.getParameter("conid"));
@@ -50,8 +53,23 @@ public class SubmissionsController extends HttpServlet {
 			request.getRequestDispatcher("/user/judge/submission.jsp").forward(request, response);
 		} else if (actionSource.equals("submitScore")) {
 			int judgeId = Integer.parseInt(request.getParameter("jid"));
+			int subId = Integer.parseInt(request.getParameter("subid"));
+			int conId = Integer.parseInt(request.getParameter("conid"));
 			double score = Double.parseDouble(request.getParameter("score"));
 			Grade grade = new Grade();
+			grade.setJudgeId(judgeId);
+			grade.setSubmissionId(subId);
+			grade.setSubmissionGrade(score);
+			message = GradeUtils.addGrade(grade);
+			
+			int uid = ContestantUtils.getUserIdFromConId(conId);
+			Contestant contestant = ContestantUtils.getContestant(uid);
+			Submission submission = SubmissionUtils.getSubmission(subId);
+			request.setAttribute("submission", submission);
+			request.setAttribute("contestant", contestant);
+			request.setAttribute("message", message.getMessage());
+			
+			request.getRequestDispatcher("/user/judge/submission.jsp").forward(request, response);
 		}
 	}
 
