@@ -29,9 +29,7 @@
     </session-config>
     
     <!-- Listeners -->
-    <listener>
-    	<listener-class>com.tridiots.cms.listeners.SpecialListener</listener-class>
-    </listener>
+    
     <!-- Listeners end -->
     
     <!-- Filters -->
