@@ -9,6 +9,7 @@
 <%@ page import="com.tridiots.cms.utils.modeldao.SubmissionUtils" %>
 <%@ page import="com.tridiots.cms.utils.modeldao.ContestantUtils" %>
 <%@ page import="com.tridiots.cms.utils.modeldao.UserUtils" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ page import="com.tridiots.cms.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -146,12 +147,14 @@ ArrayList<Submission> submissions = SubmissionUtils.getSubmissions();
                                     			int conid = submission.getContestantId();
                                     			int uid = ContestantUtils.getUserIdFromConId(conid);
                                     			String username = (UserUtils.getUser(uid)).getUserName();
+                                    			DecimalFormat decimalFormat = new DecimalFormat("#.00");
+                                    			String submissionGrade = decimalFormat.format(submission.getSubmissionFinalGrade());
                                     			%>
                                     			<tr>
                                                 	<td><img class="rounded-circle mr-2" width="30" height="30" src="avatars/avatar1.jpeg"><%=username %></td>
                                                 	<td><%=submission.getSubmissionPoemTitle() %></td>
                                                 	<td><%=submission.getSubmissionDate() %></td>
-                                                	<td><%=submission.getSubmissionFinalGrade() %></td>
+                                                	<td><%=submissionGrade %></td>
                                                 	<td>
                                                 		<form action="submissions" method="get">
                                                     		<div class="form-row">
