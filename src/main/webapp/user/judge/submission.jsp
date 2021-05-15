@@ -155,7 +155,7 @@ Judge loggedInJudge = (Judge) request.getSession().getAttribute("loggedInJudge")
                                     				<input type="hidden" name="jid" value="<%=jid %>">
                                     				<input type="hidden" name="subid" value="<%=subid %>">
                                     				<input type="hidden" name="conid" value="<%=conid %>">
-                                        			<div class="form-group score-input-form-group"><input class="form-control" type="number" name="score" value="<%=grade == null? 0 : grade.getSubmissionGrade() %>" min="0" max="100"></div>
+                                        			<div class="form-group score-input-form-group"><input class="form-control" type="number" name="score" value="<%=grade.getSubmissionGrade() == null? 0 : grade.getSubmissionGrade() %>" min="0" max="100"></div>
                                         			
                                         			<%
                                         			String message = (String) request.getAttribute("message");
