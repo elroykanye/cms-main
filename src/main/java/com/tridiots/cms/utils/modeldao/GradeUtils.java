@@ -24,15 +24,15 @@ public class GradeUtils {
 		try {
 			Message foundGrade = findGrade(grade);
 			if(foundGrade.getFlag()) {
-				String query = "UPDATE wtaxy_grade SET grade_value=? WHERE submission_id=? AND judge_id=";
+				String query = "UPDATE wtaxy_grade SET grade_value=? WHERE submission_id=? AND judge_id=?";
 				conn = ConnectionUtils.openConnection();
 				prepStatement = conn.prepareStatement(query);
 				prepStatement.setDouble(1, grade.getSubmissionGrade());
 				prepStatement.setInt(2, grade.getSubmissionId());
 				prepStatement.setInt(3, grade.getJudgeId());
 				
-				prepStatement.executeQuery();
-				message.setFlag(true); message.setMessage("Adding score success");
+				prepStatement.execute();
+				message.setFlag(true); message.setMessage("Update score success");
 			} else {
 				String query = "INSERT INTO wtaxy_grade(submission_id, judge_id, grade_value) VALUES (?,?,?) ";
 				conn = ConnectionUtils.openConnection();
@@ -41,9 +41,10 @@ public class GradeUtils {
 				prepStatement.setInt(2, grade.getJudgeId());
 				prepStatement.setDouble(3, grade.getSubmissionGrade());
 				
-				prepStatement.executeQuery();
+				prepStatement.execute();
 				message.setFlag(true); message.setMessage("Adding score success");
 			}
+			SubmissionUtils.updateSubmissionFinalGrade(grade.getSubmissionId());
 			
 		} catch (SQLException exception) {
 			exception.printStackTrace();
@@ -73,5 +74,27 @@ public class GradeUtils {
 			QueryUtils.closeQueryObjects(prepStatement, resultSet);
 			ConnectionUtils.closeConnection(conn);
 		} return message;
+	}
+	
+	public static Grade getGrade(int jid, int subid) {
+		String query = "SELECT grade_value FROM wtaxy_grade WHERE judge_id=? AND submission_id=?";
+		Grade grade = new Grade();
+		try {
+			conn = ConnectionUtils.openConnection();
+			prepStatement = conn.prepareStatement(query);
+			prepStatement.setInt(1, jid);
+			prepStatement.setInt(2, subid);
+			resultSet = prepStatement.executeQuery();
+			if(resultSet.next()) {
+				grade.setJudgeId(jid);
+				grade.setSubmissionId(subid);
+				grade.setSubmissionGrade(resultSet.getDouble("grade_value"));
+			} 
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		} finally {
+			QueryUtils.closeQueryObjects(prepStatement, resultSet);
+			ConnectionUtils.closeConnection(conn);
+		} return grade;
 	}
 }

@@ -43,7 +43,6 @@ public class JudgeUtils {
 		Judge theJudge = getJudge(user.getUserId());
 		
 		Judge judge = (Judge) user;
-		User sas = (User) judge;
 		judge.setJudgeId(theJudge.getJudgeId());
 		judge.setJudgeLevel(theJudge.getJudgeLevel());
 		return judge; 
