@@ -177,8 +177,11 @@ User user = (User) request.getSession().getAttribute("loggedInUser");
                       			<div class="row" style="text-align: center; align-content:center; margin-auto">
                       				<!-- JSP for password check -->
                                 	<%
+                                		String redirMessage = (String) request.getSession().getAttribute("redirMessage");
                                    	 	String message = (String) request.getAttribute("errorMessage");
-                                    	if(message != null) { %>
+                      					if(redirMessage != null) { %>
+                      						<div class="form-group" style="text-align: center; align-content:center; margin:auto; color: red"><%= redirMessage %></div>
+                      					<% } else if(message != null) { %>
                                     		<div class="form-group" style="text-align: center; align-content:center; margin:auto; color: red"><%= message %></div>
                                     	<% }
                                		 %>

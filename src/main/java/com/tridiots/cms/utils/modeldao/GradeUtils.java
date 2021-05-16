@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.tridiots.cms.message.Message;
 import com.tridiots.cms.models.Grade;
@@ -96,5 +97,28 @@ public class GradeUtils {
 			QueryUtils.closeQueryObjects(prepStatement, resultSet);
 			ConnectionUtils.closeConnection(conn);
 		} return grade;
+	}
+	
+	public static ArrayList<Grade> getGrades(int subid) {
+		String query = "SELECT * FROM wtaxy_grade WHERE submission_id=?";
+		ArrayList<Grade> grades = new ArrayList<>();
+		try {
+			conn = ConnectionUtils.openConnection();
+			prepStatement = conn.prepareStatement(query);
+			prepStatement.setInt(1, subid);
+			resultSet = prepStatement.executeQuery();
+			while (resultSet.next()) {
+				Grade grade = new Grade();
+				grade.setJudgeId(resultSet.getInt("judge_id"));
+				grade.setSubmissionId(subid);
+				grade.setSubmissionGrade(resultSet.getDouble("grade_value"));
+				grades.add(grade);
+			} 
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		} finally {
+			QueryUtils.closeQueryObjects(prepStatement, resultSet);
+			ConnectionUtils.closeConnection(conn);
+		} return grades;
 	}
 }
