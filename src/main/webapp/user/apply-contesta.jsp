@@ -1,3 +1,17 @@
+﻿
+
+<%--
+    Document   : apply-contest
+    Created on : Apr 30, 2021, 12:22:16 AM
+    Author     : kanye
+--%>
+
+
+<%@ page import="com.tridiots.cms.kanye.IO"%>
+<%@ page import="com.tridiots.cms.models.User"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 
