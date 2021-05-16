@@ -52,15 +52,8 @@ public class SubmitController extends HttpServlet {
 			submission.setSubmissionFinalGrade(0);
 			
 			Message submissionAdded = SubmissionUtils.addSubmission(submission);
-			if(submissionAdded.getFlag()) {
-				IO.println(submissionAdded.getMessage());
-			} else {
-				IO.println(submissionAdded.getMessage());
-				request.setAttribute("errorMessage", submissionAdded.getMessage());
-				request.getRequestDispatcher("/user/submit.jsp").forward(request, response);
-				
-			}
-			
+			request.setAttribute("message", submissionAdded.getMessage());
+			request.getRequestDispatcher("/user/submit.jsp").forward(request, response);
 		} catch(NumberFormatException exception) {
 			exception.printStackTrace();
 		}

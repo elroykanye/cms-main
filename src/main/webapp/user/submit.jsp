@@ -32,7 +32,16 @@
 
 <%
 Contestant loggedInContestant = (Contestant) request.getSession().getAttribute("loggedInContestant");
-String errorMessage = (String) request.getAttribute("errorMessage");
+String message = (String) request.getAttribute("message");
+
+if(loggedInContestant == null) {
+	/*request.getSession().setAttribute("redirMessage", "You need to apply for the contest first");
+	response.sendRedirect(request.getContextPath() + "/user/apply-contest.jsp");
+		
+		request.setAttribute("message", "You need to apply for the contest first");
+		request.getRequestDispatcher("/user/apply-contest").forward(request, response);
+	*/
+}
 %>
 
 <body id="page-top">
@@ -119,7 +128,9 @@ String errorMessage = (String) request.getAttribute("errorMessage");
                                 <div class="text-center">
                                     <h4 class="text-dark mb-4">Confirm Your Information</h4>
                                 </div>
-                                <form class="user" action="submit" method="post">
+                                
+                                <% if (loggedInContestant != null) { %>
+                                	<form class="user" action="submit" method="post">
                                     <hr>
                                     <div class="form-group row">
                                     	<input type="hidden" name="conid" value="<%=loggedInContestant.getContestantId() %>" >
@@ -140,11 +151,11 @@ String errorMessage = (String) request.getAttribute("errorMessage");
                                         </div>
                                     </div>
                                     
-                                    <% if(errorMessage != null) { %>
+                                    <% if(message != null) { %>
                                     
                                     	<div class="form-group row" id="file-upload-wrapper">
                                         	<div class="container" style="text-align:center;">
-                                           		<span style="color: red;"><%=errorMessage %></span>
+                                           		<span style="color: red;"><%=message %></span>
                                         	</div>
                                     	</div>
                                     <% } %>
@@ -152,6 +163,12 @@ String errorMessage = (String) request.getAttribute("errorMessage");
                                     <div id="submit-button-wrapper" class="form-control-user"><button class="btn btn-primary btn-block text-white btn-user" type="submit" name="action" value="submit" style="background: var(--purple);">Submit</button></div>
                                     <hr>
                                 </form>
+                            
+                                <%} else { 
+                                	request.getSession().setAttribute("redirMessage", "You need to apply for the contest first");
+                                	response.sendRedirect(request.getContextPath() + "/user/apply-contest.jsp");
+                                } %>
+                                
                             </div>
                         </div>
                     </div>
