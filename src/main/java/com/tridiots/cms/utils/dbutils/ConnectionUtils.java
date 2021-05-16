@@ -60,12 +60,11 @@ public class ConnectionUtils {
     }
 
     public static void closeConnection(Connection connection) {
-        try {
-            if(connection != null) {
-                connection.close();
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } //unregisterDriver();
+    	try {
+			if(connection != null && !(connection.isClosed())) connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }
