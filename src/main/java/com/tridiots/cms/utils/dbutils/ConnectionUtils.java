@@ -5,10 +5,6 @@ import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Enumeration;
-import java.util.concurrent.ForkJoinWorkerThread;
-
-import com.sun.tools.sjavac.Log;
-import com.sun.tools.sjavac.Log.Level;
 import com.tridiots.cms.kanye.IO;
 
 // TODO add a path to store exceptions
