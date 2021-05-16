@@ -170,55 +170,35 @@ Judge loggedInJudge = (Judge) request.getSession().getAttribute("loggedInJudge")
                             			
                             			<% 
                             		} else if(loggedInJudge.getJudgeLevel() == 202) {
-                            			%>
+                            			ArrayList<Grade> grades = GradeUtils.getGrades(thisSubmission.getSubmissionId());
+                            			if(grades != null) { 
+                            				for(Grade grade: grades) {
+                            					int gradeJid = grade.getJudgeId();
+                            					int gradeSubid = grade.getSubmissionId();
+                            					int gradeConid = thisContestant.getContestantId();
+                            					%>
+                            					<div class="col">
+                                    				<form class="text-center">
+                                    					<input type="hidden" name="jid" value="<%=gradeJid %>">
+                                    					<input type="hidden" name="subid" value="<%=gradeSubid %>">
+                                    					<input type="hidden" name="conid" value="<%=gradeConid %>">
+                                        				<div class="form-group score-input-form-group"><input class="form-control" type="text" name="score" value="<%=grade.getSubmissionGrade() %>" min="0" max="100"></div>
+                                        				<div class="form-group score-submit-form-group"><button class="btn btn-primary btn-user" type="submit" name="action" value="updateScore" style="background: var(--indigo);">Update Score</button></div>
+                                    				</form>
+                                				</div>
+                            				<% }
+                            			} else { %>
                             				<div class="col">
                                     			<form class="text-center">
-                                        			<div class="form-group score-input-form-group"><input class="form-control" type="text"></div>
-                                        			<div class="form-group score-submit-form-group"><button class="btn btn-primary btn-user" type="button" style="background: var(--indigo);">Submit Score</button></div>
+                                        			<div class="form-group score-input-form-group"><span><%=new String("No grade given for this submission yet") %></span></div>
                                     			</form>
                                 			</div>
-                                			<div class="col">
-                                    			<form class="text-center">
-                                        			<div class="form-group score-input-form-group"><input class="form-control" type="text"></div>
-                                        			<div class="form-group score-submit-form-group"><button class="btn btn-primary btn-user" type="button" style="background: var(--indigo);">Submit Score</button></div>
-                                    			</form>
-                                			</div>
-                                			<div class="col">
-                                    			<form class="text-center">
-                                        			<div class="form-group score-input-form-group"><input class="form-control" type="text"></div>
-                                       			 	<div class="form-group score-submit-form-group"><button class="btn btn-primary btn-user" type="button" style="background: var(--indigo);">Submit Score</button></div>
-                                    			</form>
-                                			</div>
-                            			<%
+                            			<% } 
                             		} else {
                             			request.getSession().setAttribute("errorMessage", "Fake judge account");
                             			request.getRequestDispatcher("/logout").forward(request, response);
                             		}
                             	%>
-                                
-                                
-                                <!-- 
-                                <div class="col">
-                                    <form class="text-center">
-                                        <div class="form-group score-input-form-group"><input class="form-control" type="text"></div>
-                                        <div class="form-group score-submit-form-group"><button class="btn btn-primary btn-user" type="button" style="background: var(--indigo);">Submit Score</button></div>
-                                    </form>
-                                </div>
-                                <div class="col">
-                                    <form class="text-center">
-                                        <div class="form-group score-input-form-group"><input class="form-control" type="text"></div>
-                                        <div class="form-group score-submit-form-group"><button class="btn btn-primary btn-user" type="button" style="background: var(--indigo);">Submit Score</button></div>
-                                    </form>
-                                </div>
-                                <div class="col">
-                                    <form class="text-center">
-                                        <div class="form-group score-input-form-group"><input class="form-control" type="text"></div>
-                                        <div class="form-group score-submit-form-group"><button class="btn btn-primary btn-user" type="button" style="background: var(--indigo);">Submit Score</button></div>
-                                    </form>
-                                </div>
-                                 -->
-                                 
-                                 
                             </div>
                         </div>
                     </div>
