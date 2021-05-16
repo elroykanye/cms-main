@@ -51,7 +51,7 @@ public class SubmissionsController extends HttpServlet {
 			request.setAttribute("submission", SubmissionUtils.getSubmission(submissionId));
 			request.setAttribute("contestant", contestant);
 			request.getRequestDispatcher("/user/judge/submission.jsp").forward(request, response);
-		} else if (actionSource.equals("submitScore")) {
+		} else if (actionSource.equals("submitScore") || actionSource.equals("updateScore")) {
 			int judgeId = Integer.parseInt(request.getParameter("jid"));
 			int subId = Integer.parseInt(request.getParameter("subid"));
 			int conId = Integer.parseInt(request.getParameter("conid"));

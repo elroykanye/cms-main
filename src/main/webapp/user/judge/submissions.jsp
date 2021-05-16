@@ -136,7 +136,7 @@ ArrayList<Submission> submissions = SubmissionUtils.getSubmissions();
                                             <th>User</th>
                                             <th>Poem Title</th>
                                             <th>Submission Date</th>
-                                            <th>Final Grade</th>
+                                            <th>Final Grade (/100)</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -154,7 +154,7 @@ ArrayList<Submission> submissions = SubmissionUtils.getSubmissions();
                                                 	<td><img class="rounded-circle mr-2" width="30" height="30" src="avatars/avatar1.jpeg"><%=username %></td>
                                                 	<td><%=submission.getSubmissionPoemTitle() %></td>
                                                 	<td><%=submission.getSubmissionDate() %></td>
-                                                	<td><%=submissionGrade %></td>
+                                                	<td><%=String.valueOf(submissionGrade) %></td>
                                                 	<td>
                                                 		<form action="submissions" method="get">
                                                     		<div class="form-row">
@@ -174,7 +174,7 @@ ArrayList<Submission> submissions = SubmissionUtils.getSubmissions();
                                             <td><strong>User</strong></td>
                                             <td><strong>Poem Title</strong></td>
                                             <td><strong>Submission Date</strong></td>
-                                            <td><strong>Final Grade</strong></td>
+                                            <td><strong>Final Grade (/100)</strong></td>
                                             <td><strong>Action</strong></td>
                                         </tr>
                                     </tfoot>
