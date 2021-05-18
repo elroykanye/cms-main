@@ -129,8 +129,8 @@ ArrayList<Contestant> contestants = ContestantUtils.getContestants();
                                             			<td><%=contestant.getUserGender() %></td>
                                             			<td><%=contestant.getUserJoinDate() %></td>
                                             			<td>
-                                                			<form action="/user/judge/contestants" method="get">
-                                                				<input type="hidden" name="conId" value="<%=contestant.getContestantId() %>">
+                                                			<form action="contestants" method="get">
+                                                				<input type="hidden" name="conid" value="<%=contestant.getContestantId() %>">
                                                     			<div class="form-row">
                                                         			<div class="col"><button class="btn btn-primary" type="submit" name="äction" value="view">View</button></div>
                                                     			</div>

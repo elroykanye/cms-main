@@ -28,7 +28,7 @@
 </head>
 
 <%
-User thisUser = (User) request.getSession().getAttribute("currenUser");
+User thisUser = (User) request.getSession().getAttribute("currentUser");
 %>
 
 <body id="page-top">
@@ -139,18 +139,18 @@ User thisUser = (User) request.getSession().getAttribute("currenUser");
                                             <form>
                                                 <div class="form-row">
                                                     <div class="col">
-                                                        <div class="form-group"><label for="username"><strong><%=thisUser.getUserName() %></strong></label><input class="form-control" type="text" id="username" placeholder="user.name" name="username"></div>
+                                                        <div class="form-group"><label for="username"><strong>Username</strong></label><input class="form-control" type="text" id="username" placeholder="user.name" name="username" value="<%=thisUser.getUserName() %>"></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="form-group"><label for="email"><strong><%=thisUser.getUserEmail() %></strong></label><input class="form-control" type="email" id="email" placeholder="user@example.com" name="email"></div>
+                                                        <div class="form-group"><label for="email"><strong>Email</strong></label><input class="form-control" type="email" id="email" placeholder="user@example.com" name="email" value="<%=thisUser.getUserEmail() %>"></div>
                                                     </div>
                                                 </div>
                                                 <div class="form-row">
                                                     <div class="col">
-                                                        <div class="form-group"><label for="first_name"><strong><%=thisUser.getUserFirstName() %></strong></label><input class="form-control" type="text" id="first_name" placeholder="John" name="first_name"></div>
+                                                        <div class="form-group"><label for="first_name"><strong>First Name</strong></label><input class="form-control" type="text" id="first_name" placeholder="John" name="first_name" value="<%=thisUser.getUserFirstName() %>"></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="form-group"><label for="last_name"><strong><%=thisUser.getUserLastName() %></strong></label><input class="form-control" type="text" id="last_name" placeholder="Doe" name="last_name"></div>
+                                                        <div class="form-group"><label for="last_name"><strong>Last Name</strong></label><input class="form-control" type="text" id="last_name" placeholder="Doe" name="last_name" value="<%=thisUser.getUserLastName() %>"></div>
                                                     </div>
                                                 </div>
                                                 <div class="form-row">
