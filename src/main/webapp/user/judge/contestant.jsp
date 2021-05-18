@@ -7,10 +7,11 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.tridiots.cms.kanye.IO"%>
 <%@ page import="com.tridiots.cms.models.Contestant"%>
+<%@ page import="com.tridiots.cms.models.User"%>
 <%@ page import="com.tridiots.cms.utils.modeldao.ContestantUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    
 <!DOCTYPE html>
 <html>
 
@@ -26,11 +27,9 @@
     <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
 
-<% 
-
-
+<%
+User thisUser = (User) request.getSession().getAttribute("currenUser");
 %>
-
 
 <body id="page-top">
     <div id="wrapper">
@@ -64,10 +63,6 @@
                             </div>
                         </form>
                         <ul class="navbar-nav flex-nowrap ml-auto">
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
-                            </li>
-                            <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#">Date<span class="d-none d-lg-inline mr-2 text-gray-600 small">Valerie Luna</span></a>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in"><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a><a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity log</a>
@@ -79,7 +74,7 @@
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">{user-name}</h3>
+                    <h3 class="text-dark mb-4"><%=thisUser.getUserName() %></h3>
                     <div class="row mb-3">
                         <div class="col-lg-4">
                             <div class="card mb-3">
@@ -87,6 +82,7 @@
                                     <div class="mb-3"><button class="btn btn-primary btn-sm" type="button" style="background: var(--purple);">Change Photo</button></div>
                                 </div>
                             </div>
+                            <!--
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="text-primary font-weight-bold m-0">Actions</h6>
@@ -99,7 +95,8 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div> 
+                            -->
                         </div>
                         <div class="col-lg-8">
                             <div class="row mb-3 d-none">
@@ -136,24 +133,24 @@
                                 <div class="col">
                                     <div class="card shadow mb-3">
                                         <div class="card-header py-3">
-                                            <p class="text-primary m-0 font-weight-bold">User Info</p>
+                                            <p class="text-primary m-0 font-weight-bold">Contestant Info</p>
                                         </div>
                                         <div class="card-body">
                                             <form>
                                                 <div class="form-row">
                                                     <div class="col">
-                                                        <div class="form-group"><label for="username"><strong>Username</strong></label><input class="form-control" type="text" id="username" placeholder="user.name" name="username"></div>
+                                                        <div class="form-group"><label for="username"><strong><%=thisUser.getUserName() %></strong></label><input class="form-control" type="text" id="username" placeholder="user.name" name="username"></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="form-group"><label for="email"><strong>Email Address</strong></label><input class="form-control" type="email" id="email" placeholder="user@example.com" name="email"></div>
+                                                        <div class="form-group"><label for="email"><strong><%=thisUser.getUserEmail() %></strong></label><input class="form-control" type="email" id="email" placeholder="user@example.com" name="email"></div>
                                                     </div>
                                                 </div>
                                                 <div class="form-row">
                                                     <div class="col">
-                                                        <div class="form-group"><label for="first_name"><strong>First Name</strong></label><input class="form-control" type="text" id="first_name" placeholder="John" name="first_name"></div>
+                                                        <div class="form-group"><label for="first_name"><strong><%=thisUser.getUserFirstName() %></strong></label><input class="form-control" type="text" id="first_name" placeholder="John" name="first_name"></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="form-group"><label for="last_name"><strong>Last Name</strong></label><input class="form-control" type="text" id="last_name" placeholder="Doe" name="last_name"></div>
+                                                        <div class="form-group"><label for="last_name"><strong><%=thisUser.getUserLastName() %></strong></label><input class="form-control" type="text" id="last_name" placeholder="Doe" name="last_name"></div>
                                                     </div>
                                                 </div>
                                                 <div class="form-row">
