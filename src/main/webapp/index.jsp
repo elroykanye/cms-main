@@ -31,7 +31,7 @@
                     <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-home"></i><span>Welcome</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="register.jsp"><i class="fas fa-user"></i><span>Register</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="login.jsp"><i class="fa fa-sign-in"></i><span>Sign In</span></a></li>
-                    <li class="nav-item"></li>
+
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
