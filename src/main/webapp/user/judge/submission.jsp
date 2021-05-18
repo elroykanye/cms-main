@@ -49,13 +49,13 @@ Judge loggedInJudge = (Judge) request.getSession().getAttribute("loggedInJudge")
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="/user/judge/dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="/user/profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="/user/judge/contestants.html"><i class="fa fa-users"></i><span>Contestants</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="/user/judge/submissions.html"><i class="fas fa-table"></i><span>Submissions</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="../profile.jsp"><i class="fas fa-user"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="contestants.jsp"><i class="fa fa-users"></i><span>Contestants</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="submissions.jsp"><i class="fas fa-table"></i><span>Submissions</span></a></li>
                     <li class="nav-item">
                         <div style="text-align: center;">
-                            <form class="form-inline" style="padding:8px;"><button class="btn btn-primary" type="submit" style="margin: auto;background: rgb(255,255,255);color: var(--purple);" name="action" value="Sign Out"><i class="fa fa-sign-out"></i>&nbsp;Sign Out</button></form>
+                            <form class="form-inline" style="padding:8px;" action="logout"><button class="btn btn-primary" type="submit" style="margin: auto;background: rgb(255,255,255);color: var(--purple);" name="action" value="Sign Out"><i class="fa fa-sign-out"></i>&nbsp;Sign Out</button></form>
                         </div>
                     </li>
                 </ul>
