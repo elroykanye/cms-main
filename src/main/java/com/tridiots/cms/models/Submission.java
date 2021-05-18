@@ -23,7 +23,7 @@ public class Submission {
 		this.submissionDate = submissionDate;
 	}
 	public String getSubmissionPoemTitle() {
-		return submissionPoemTitle.equals(null) ? submissionPoemTitle: "My Poem";
+		return this.submissionPoemTitle;
 	}
 	public void setSubmissionPoemTitle(String submissionPoemTitle) {
 		this.submissionPoemTitle = submissionPoemTitle;
