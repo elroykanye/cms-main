@@ -147,6 +147,7 @@ public class UserUtils {
                 user.setUserLastName(resultSet.getString("user_last_name"));
                 user.setUserGender(resultSet.getString("user_gender"));
                 user.setUserDob(resultSet.getDate("user_dob"));
+                IO.println(user.getUserName());
             }
         } catch(SQLException exception) {
             IO.println(exception);
