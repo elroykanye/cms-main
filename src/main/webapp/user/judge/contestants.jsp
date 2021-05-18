@@ -13,7 +13,6 @@
 <%@ page import="com.tridiots.cms.utils.modeldao.ContestantUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 
@@ -67,38 +66,6 @@ ArrayList<Contestant> contestants = ContestantUtils.getContestants();
                             </div>
                         </form>
                         <ul class="navbar-nav flex-nowrap ml-auto">
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><span class="badge badge-danger badge-counter">3+</span><i class="fas fa-bell fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-list animated--grow-in">
-                                        <h6 class="dropdown-header">alerts center</h6><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="mr-3">
-                                                <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">December 12, 2019</span>
-                                                <p>A new monthly report is ready to download!</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="mr-3">
-                                                <div class="bg-success icon-circle"><i class="fas fa-donate text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">December 7, 2019</span>
-                                                <p>$290.29 has been deposited into your account!</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="mr-3">
-                                                <div class="bg-warning icon-circle"><i class="fas fa-exclamation-triangle text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">December 2, 2019</span>
-                                                <p>Spending Alert: We've noticed unusually high spending for your account.</p>
-                                            </div>
-                                        </a><a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
-                            </li>
-                            <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small">{{username}}</span><img class="border rounded-circle img-profile" src="avatars/avatardeaedae1.jpeg" alt="{{profile-image}}"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in"><a class="dropdown-item" href="../profile.html"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a><a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity log</a>
@@ -162,39 +129,26 @@ ArrayList<Contestant> contestants = ContestantUtils.getContestants();
                                             			<td><%=contestant.getUserGender() %></td>
                                             			<td><%=contestant.getUserJoinDate() %></td>
                                             			<td>
-                                                			<form>
-                                                				<!-- <input type="hidden" name="conId" value="<%=contestant.getContestantId() %>"> -->
+                                                			<form action="/user/judge/contestants" method="get">
+                                                				<input type="hidden" name="conId" value="<%=contestant.getContestantId() %>">
                                                     			<div class="form-row">
-                                                        		<div class="col"><button class="btn btn-primary" type="button">Edit</button></div>
-                                                    		</div>
+                                                        			<div class="col"><button class="btn btn-primary" type="submit" name="äction" value="view">View</button></div>
+                                                    			</div>
                                                 		</form>
                                             </td>
                                         </tr>
                                     		
                                         		<% } %>
                                     	<% } %>
-                                        <tr>
-                                            <td><img class="rounded-circle mr-2" width="30" height="30" src="avatars/avatar1.jpeg">elroykanye</td>
-                                            <td>Elroy</td>
-                                            <td>Kanye</td>
-                                            <td>20</td>
-                                            <td>2008/11/28</td>
-                                            <td>
-                                                <form>
-                                                    <div class="form-row">
-                                                        <div class="col"><button class="btn btn-primary" type="button">Edit</button></div>
-                                                    </div>
-                                                </form>
-                                            </td>
-                                        </tr>
+                                        
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td><strong>Name</strong></td>
-                                            <td><strong>Position</strong></td>
-                                            <td><strong>Office</strong></td>
+                                            <td><strong>User Name</strong></td>
+                                            <td><strong>First Name</strong></td>
+                                            <td><strong>Last Name</strong></td>
                                             <td><strong>Age</strong></td>
-                                            <td><strong>Start date</strong></td>
+                                            <td><strong>Join Date</strong></td>
                                             <td><strong>Action</strong></td>
                                         </tr>
                                     </tfoot>

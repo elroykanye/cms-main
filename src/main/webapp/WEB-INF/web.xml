@@ -121,6 +121,14 @@
         <url-pattern>/users</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>ContestantsController</servlet-name>
+        <servlet-class>com.tridiots.cms.controllers.judge.ConsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContestantsController</servlet-name>
+        <url-pattern>/user/judge/contestants</url-pattern>
+    </servlet-mapping>
+    <servlet>
     	<servlet-name>ApplyContest</servlet-name>
     	<servlet-class>com.tridiots.cms.controllers.user.ApplyContest</servlet-class>
     </servlet>

@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.tridiots.cms.controllers.UsersController;
 import com.tridiots.cms.models.User;
+import com.tridiots.cms.utils.modeldao.ContestantUtils;
 import com.tridiots.cms.utils.modeldao.UserUtils;
 
 /**
  * Servlet implementation class ConsController
  */
-@WebServlet("/ConsController")
 public class ConsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,8 +38,8 @@ public class ConsController extends HttpServlet {
         Integer gottenConId = null;
         if(request.getParameter("conid") != null) gottenConId = Integer.parseInt(request.getParameter("conid"));
         switch (request.getParameter("action").toLowerCase()) {
-            case "edit":
-                doEditUser(request, response, (int)gottenConId);
+            case "view":
+                doViewContestant(request, response, (int)gottenConId);
                 break;
             case "delete":
                 try {
@@ -64,10 +64,11 @@ public class ConsController extends HttpServlet {
 	}
 
 	
-	private void doEditUser(HttpServletRequest request, HttpServletResponse response, int uid) throws ServletException, IOException {
+	private void doViewContestant(HttpServletRequest request, HttpServletResponse response, int conid) throws ServletException, IOException {
+		int uid = ContestantUtils.getUserIdFromConId(conid);
         User user = UserUtils.getUser(uid);
         request.getSession().setAttribute("currentUser", user);
-        response.sendRedirect("user/admin/user.jsp");
+        response.sendRedirect("user/judge/contestant.jsp");
     }
     
     private void doDeleteUser(HttpServletRequest request, HttpServletResponse response, int uid) throws ServletException, IOException, SQLException {
