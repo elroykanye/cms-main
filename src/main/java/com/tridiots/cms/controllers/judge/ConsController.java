@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.tridiots.cms.controllers.UsersController;
+import com.tridiots.cms.kanye.IO;
 import com.tridiots.cms.models.User;
 import com.tridiots.cms.utils.modeldao.ContestantUtils;
 import com.tridiots.cms.utils.modeldao.UserUtils;
@@ -36,23 +37,14 @@ public class ConsController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
         Integer gottenConId = null;
-        if(request.getParameter("conid") != null) gottenConId = Integer.parseInt(request.getParameter("conid"));
-        switch (request.getParameter("action").toLowerCase()) {
-            case "view":
-                doViewContestant(request, response, (int)gottenConId);
-                break;
-            case "delete":
-                try {
-                    doDeleteUser(request, response, (int) gottenConId);
-                } catch (SQLException ex) {
-                    Logger.getLogger(UsersController.class.getName()).log(Level.SEVERE, null, ex);
-                }   break;
-            case "delete all":
-                doDeleteAll(request, response);
-                break;
-            default:
-                break;
+        if(request.getParameter("conid") != null) {
+        	gottenConId = Integer.parseInt(request.getParameter("conid"));
+        	doViewContestant(request, response, gottenConId);
+        } else {
+        	response.sendRedirect(request.getContextPath() + "/user/judge/contestants.jsp");
         }
+        
+        
 	}
 
 	/**
@@ -66,20 +58,10 @@ public class ConsController extends HttpServlet {
 	
 	private void doViewContestant(HttpServletRequest request, HttpServletResponse response, int conid) throws ServletException, IOException {
 		int uid = ContestantUtils.getUserIdFromConId(conid);
+		IO.println(conid + " param tap");
         User user = UserUtils.getUser(uid);
+        IO.println(user.getUserFirstName() + " Contestant");
         request.getSession().setAttribute("currentUser", user);
-        response.sendRedirect("user/judge/contestant.jsp");
+        response.sendRedirect(request.getContextPath() + "/user/judge/contestant.jsp");
     }
-    
-    private void doDeleteUser(HttpServletRequest request, HttpServletResponse response, int uid) throws ServletException, IOException, SQLException {
-        User user = new User();
-        user.setUserId(uid);
-        UserUtils.deleteUser(user);
-        response.sendRedirect("user/admin/users.jsp");
-    }
-    private void doDeleteAll(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        UserUtils.deleteAllUsers();
-        response.sendRedirect("user/admin/users.jsp");
-    }
-
 }

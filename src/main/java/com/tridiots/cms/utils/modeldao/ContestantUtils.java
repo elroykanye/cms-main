@@ -105,14 +105,17 @@ public class ContestantUtils {
 	
 	public static int getUserIdFromConId(int conid) {
 		int uid = -1;
-		String query = "SELECT contestant_id, user_id FROM wtaxy_contestant WHERE contestant_id=?";
+		String query = "SELECT user_id FROM wtaxy_contestant WHERE contestant_id=?";
 		try {
 			conn = ConnectionUtils.openConnection();
 			prepStatement = conn.prepareStatement(query);
 			prepStatement.setInt(1, conid);
 			resultSet = prepStatement.executeQuery();
 			if(resultSet.next()) uid = resultSet.getInt("user_id");
-			else uid = -1;
+			else {
+				uid = -1;
+				IO.println("getUserFromConId: " + conid + "not found user");
+			}
 		} catch(SQLException exception) {
 			exception.printStackTrace();
 		} finally {
@@ -162,7 +165,7 @@ public class ContestantUtils {
 	public static ArrayList<Contestant> getContestants () {
 		ArrayList<Contestant> contestants = new ArrayList<Contestant>();
 		conn = ConnectionUtils.openConnection();
-		String sql = "SELECT wu.user_id, wu.user_name, wu.user_email, wu.user_pass, wu.user_first_name, wu.user_last_name, wu.user_gender, wu.user_dob, wu.user_verified, wu.user_role, wu.user_joined_date, wc.contestant_image_dir\r\n"
+		String sql = "SELECT wu.user_id, wu.user_name, wu.user_email, wu.user_pass, wu.user_first_name, wu.user_last_name, wu.user_gender, wu.user_dob, wu.user_verified, wu.user_role, wu.user_joined_date, wc.contestant_id, wc.contestant_image_dir\r\n"
 				+ "FROM cms.wtaxy_user wu \r\n"
 				+ "	INNER JOIN cms.wtaxy_contestant wc ON ( wu.user_id = wc.user_id  ) ";
 		try {
@@ -171,7 +174,8 @@ public class ContestantUtils {
 			while(resultSet.next()) {
 				Contestant contestant = new Contestant();
 				contestant.setUserName(resultSet.getString("wu.user_name"));
-				
+				contestant.setUserId(resultSet.getInt("wu.user_id"));
+				contestant.setContestantId(resultSet.getInt("wc.contestant_id"));
 				contestant.setContestantImageDir(resultSet.getString("wc.contestant_image_dir"));
 				contestant.setUserName(resultSet.getString("wu.user_name"));
 				contestant.setUserEmail(resultSet.getString("wu.user_email"));
