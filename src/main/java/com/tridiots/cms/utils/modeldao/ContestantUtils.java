@@ -4,10 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.tridiots.cms.kanye.DoubleObject;
 import com.tridiots.cms.kanye.IO;
 import com.tridiots.cms.message.Message;
 import com.tridiots.cms.models.Contestant;

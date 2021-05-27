@@ -1,17 +1,12 @@
 package com.tridiots.cms.controllers.judge;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.tridiots.cms.controllers.UsersController;
 import com.tridiots.cms.kanye.IO;
 import com.tridiots.cms.models.User;
 import com.tridiots.cms.utils.modeldao.ContestantUtils;

@@ -16,7 +16,6 @@ import java.util.logging.Logger;
  * @author Tridiots
  * Data access class for the User model.
  */
-@SuppressWarnings("DanglingJavadoc")
 public class UserUtils {
     private static PreparedStatement prepStatement = null;
     private static Statement statement = null;
