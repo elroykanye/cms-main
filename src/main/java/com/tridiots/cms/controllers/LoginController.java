@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -59,7 +60,7 @@ public class LoginController extends Controller{
         if(loggedIn.getFlag())  {
             try {
             	user = UserUtils.getUser(inputLogin);
-            	switch(user.getUserRole()) {
+            	switch(Objects.requireNonNull(user).getUserRole()) {
             	case 111:
             		request.getSession().setAttribute("loggedInAdmin", user);
             		break;

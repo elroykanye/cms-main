@@ -28,6 +28,7 @@ public class SubmissionUtils {
 		Message message = new Message("Submission unsuccessful", false);
 		try {
 			conn = ConnectionUtils.openConnection();
+			assert conn != null;
 			prepStatement = conn.prepareStatement(sql);
 			
 			prepStatement.setString(1,submission.getSubmissionPoemEn());
