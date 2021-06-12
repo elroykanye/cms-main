@@ -64,7 +64,7 @@
                         </form>
                         <ul class="navbar-nav flex-nowrap ml-auto">
                             <li class="nav-item dropdown no-arrow">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small">{{username}}</span><img class="border rounded-circle img-profile" src="avatars/avatar1.jpeg"></a>
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small"> <%=loggedInUser.getUserName()%> </span><!--<img class="border rounded-circle img-profile" src="avatars/avatar1.jpeg">--></a>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in"><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a><a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity log</a>
                                         <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
                                     </div>
@@ -76,12 +76,19 @@
                 <div class="container-fluid">
                     <h3 class="text-dark mb-4">Profile</h3>
                     <div class="row mb-3">
+
+                        <!--
                         <div class="col-lg-4">
+
+
                             <div class="card mb-3">
                                 <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="dogs/image2.jpeg" width="160" height="160">
                                     <div class="mb-3"><button class="btn btn-primary btn-sm" type="button" style="background: var(--purple);">Change Photo</button></div>
                                 </div>
                             </div>
+                            -->
+
+                        <!--
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="text-primary font-weight-bold m-0">Progress</h6>
@@ -101,9 +108,14 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
-                        <div class="col-lg-8">
+                        -->
+
+                        <div class="col-lg-12">
                             <div class="row mb-3 d-none">
+
+                                <!--
                                 <div class="col">
                                     <div class="card text-white bg-primary shadow">
                                         <div class="card-body">
@@ -118,6 +130,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                -->
+
                                 <div class="col">
                                     <div class="card text-white bg-success shadow">
                                         <div class="card-body">
@@ -157,13 +171,13 @@
                                                         <div class="form-group"><label for="last_name"><strong>Last Name</strong></label><input class="form-control" type="text" id="last_name" placeholder="Doe" name="last_name" value="<%=loggedInUser.getUserLastName() %>"></div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group"><label for="address"><strong>Address</strong></label><input class="form-control" type="text" id="address" placeholder="Sunset Blvd, 38" name="address"></div>
+                                                <div class="form-group"><label for="address"><strong>Address</strong></label><input class="form-control" type="text" id="address" placeholder="CCAST Street" name="address"></div>
                                                 <div class="form-row">
                                                     <div class="col">
-                                                        <div class="form-group"><label for="city"><strong>City</strong></label><input class="form-control" type="text" id="city" placeholder="Los Angeles" name="city"></div>
+                                                        <div class="form-group"><label for="city"><strong>City</strong></label><input class="form-control" type="text" id="city" placeholder="Bambili" name="city"></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="form-group"><label for="country"><strong>Country</strong></label><input class="form-control" type="text" id="country" placeholder="USA" name="country"></div>
+                                                        <div class="form-group"><label for="country"><strong>Country</strong></label><input class="form-control" type="text" id="country" placeholder="Cameroon" name="country"></div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group"><button class="btn btn-primary btn-sm" type="submit" style="background: var(--purple);">Save&nbsp;Settings</button></div>
