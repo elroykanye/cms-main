@@ -38,6 +38,7 @@
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link" href="profile.jsp"><i class="fas fa-user"></i><span>Profile</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="apply-contest.jsp"><i class="fa fa-play"></i><span>Apply for Contest</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="submit.jsp"><i class="fa fa-play"></i><span>Submit Poem</span></a></li>
                     <li class="nav-item">
                         <div style="text-align: center;">
                             <form class="form-inline" style="padding:8px;" action = "logout"><button class="btn btn-primary" type="submit" style="margin: auto;background: rgb(255,255,255);color: var(--purple);" name="action" value="Sign Out"><i class="fa fa-sign-out"></i>&nbsp;Sign Out</button></form>
