@@ -13,16 +13,12 @@ import com.tridiots.cms.kanye.IO;
 
 
 public class ConnectionUtils {
-    /*
-     * 
-     * private static final String DB_HOST = "jdbc:mysql://localhost:3306/cms";
-     * private static final String DB_USER = "root";
-     * private static final String DB_PASS = "";
-     */
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
-    private static final String DB_HOST = "jdbc:mysql://sql5.freesqldatabase.com:3306/sql5415316";
-    private static final String DB_USER = "sql5415316";
-    private static final String DB_PASS = "jtqLI8yLqC";
+
+
+    private static final String DB_HOST = "jdbc:mysql://localhost:3306/cms_final";
+    private static final String DB_USER = "root";
+    private static final String DB_PASS = "";
 
     @SuppressWarnings({ "unused" })
 	private static void deregisterDriver() {
