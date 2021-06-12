@@ -90,7 +90,7 @@
                                     	<div class="form-group"><label class="field-label-appl">Last Name</label><input type="text" class="form-control form-control-user text-input-round-border text-input-appl" name="first-name" value="<%=user.getUserLastName() %>"></div>
                                 	</div>
                       			</div>
-                      			<div class="row" style="text-align: center; align-content:center; margin-auto">
+                      			<div class="row" style="text-align: center; align-content:center; margin: auto;">
                       				<!-- JSP for password check -->
                                 	<%
                                 		String redirMessage = (String) request.getSession().getAttribute("redirMessage");
