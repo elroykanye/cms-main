@@ -43,7 +43,7 @@ public class ApplyContest extends HttpServlet {
 		if(addConSuccess.getFlag()) {
 			Contestant loggedInContestant = ContestantUtils.getContestant(userId);
     		request.getSession().setAttribute("loggedInContestant", loggedInContestant);
-			response.sendRedirect(request.getContextPath() + "/user/submit.html");
+			response.sendRedirect(request.getContextPath() + "/user/submit.jsp");
 		} else {
 			request.setAttribute("errorMessage", addConSuccess.getMessage());
 			request.getRequestDispatcher( "/user/apply-contest.jsp").forward(request, response);

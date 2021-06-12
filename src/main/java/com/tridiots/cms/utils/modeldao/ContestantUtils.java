@@ -13,18 +13,17 @@ import com.tridiots.cms.models.User;
 import com.tridiots.cms.utils.dbutils.ConnectionUtils;
 import com.tridiots.cms.utils.dbutils.QueryUtils;
 
+import javax.management.Query;
+
 public class ContestantUtils {
-	
-	private static Contestant contestant = null;
-	
-	
+
+
 	private static Connection conn;
 	private static PreparedStatement prepStatement;
 	private static ResultSet resultSet;
 	private static Message message = null;
 	
 	public static Message addContestant(int userId) {
-		int uid = userId;
 		String avatarDir = "dir";
 		
 		message = new Message("Contestant registration unsuccessful", false);
@@ -34,13 +33,14 @@ public class ContestantUtils {
 		if(!conExists.getFlag()) {
 			try {
 				conn = ConnectionUtils.openConnection();
+				assert conn != null;
 				prepStatement = conn.prepareStatement(insertSql);
-				prepStatement.setInt(1, uid);
+				prepStatement.setInt(1, userId);
 				prepStatement.setString(2, avatarDir);
 				prepStatement.executeUpdate();
 				
 				prepStatement = conn.prepareStatement(updateSQL);
-				prepStatement.setInt(1, uid);
+				prepStatement.setInt(1, userId);
 				prepStatement.executeUpdate();
 				
 				message.setMessage("Contestant registration successful"); message.setFlag(true);
@@ -58,15 +58,15 @@ public class ContestantUtils {
 	}
 	
 	public static Message addContestant (Contestant con) {
-		contestant = con;
 		conn = ConnectionUtils.openConnection();
 		 message = new Message("Contestant registration unsuccessful", false);
 		
 		String sql = "INSERT INTO wtaxy_contestant(user_id,contestant_image_dir) VALUES (?,?);";
 		try {
+			assert conn != null;
 			prepStatement = conn.prepareStatement(sql);
-			prepStatement.setInt(1, contestant.getUserId());
-			prepStatement.setString(2, contestant.getContestantImageDir());
+			prepStatement.setInt(1, con.getUserId());
+			prepStatement.setString(2, con.getContestantImageDir());
 			prepStatement.executeUpdate();
 			message.setMessage("Contestant registration successful"); message.setFlag(true);
 		} catch (SQLException exception) {
@@ -106,6 +106,7 @@ public class ContestantUtils {
 		String query = "SELECT user_id FROM wtaxy_contestant WHERE contestant_id=?";
 		try {
 			conn = ConnectionUtils.openConnection();
+			assert conn != null;
 			prepStatement = conn.prepareStatement(query);
 			prepStatement.setInt(1, conid);
 			resultSet = prepStatement.executeQuery();
@@ -122,8 +123,47 @@ public class ContestantUtils {
 		}
 		return uid;
 	}
+
+	public static Contestant getContestant(int userId)  {
+		Message foundContestant = findContestant(userId);
+		Contestant contestant = new Contestant();
+		User user = UserUtils.getUser(userId);
+		if(foundContestant.getFlag()) {
+			String sql = "SELECT * FROM wtaxy_contestant WHERE user_id=?";
+			conn = ConnectionUtils.openConnection();
+			try {
+				assert conn != null;
+				prepStatement = conn.prepareStatement(sql);
+				prepStatement.setInt(1,userId);
+				resultSet = prepStatement.executeQuery();
+
+				if(resultSet.next()) {
+					contestant.setContestantId(resultSet.getInt("contestant_id"));
+					contestant.setContestantVerified(resultSet.getBoolean("contestant_verified"));
+
+					contestant.setUserName(user.getUserName());
+					contestant.setUserFirstName(user.getUserFirstName());
+					contestant.setUserLastName(user.getUserLastName());
+					contestant.setUserEmail(user.getUserEmail());
+					contestant.setUserDob(user.getUserDob());
+					contestant.setUserGender(user.getUserGender());
+					contestant.setUserId(user.getUserId());
+					contestant.setUserRole(user.getUserRole());
+					contestant.setUserVerified(user.getUserVerified());
+					contestant.setUserJoinDate(user.getUserJoinDate());
+				} else {
+					contestant = null;
+				}
+			} catch (SQLException exception) {
+				exception.printStackTrace();
+			} finally {
+				QueryUtils.closeQueryObjects(prepStatement, resultSet);
+			}
+		}
+		return contestant;
+	}
 	
-	public static Contestant getContestant (int uid) {
+	public static Contestant getContestantOld (int uid) {
 		Message foundContestant = findContestant(uid);
 		Contestant contestant = new Contestant();
 		if(foundContestant.getFlag()) {
@@ -136,7 +176,6 @@ public class ContestantUtils {
 				prepStatement.setInt(1, uid);
 				resultSet = prepStatement.executeQuery();
 				while(resultSet.next()) {
-					contestant.setUserName(resultSet.getString("wu.user_name"));
 					contestant.setContestantId(resultSet.getInt("wc.contestant_id"));
 					contestant.setContestantImageDir(resultSet.getString("wc.contestant_image_dir"));
 					contestant.setUserName(resultSet.getString("wu.user_name"));
@@ -146,7 +185,8 @@ public class ContestantUtils {
 					contestant.setUserGender(resultSet.getString("wu.user_gender"));
 					contestant.setUserDob(resultSet.getDate("wu.user_dob"));
 					contestant.setUserJoinDate(resultSet.getDate("wu.user_joined_date"));
-					IO.println(contestant.getUserName() + " " + contestant.getUserFirstName() + " " + contestant.getUserLastName());
+					contestant.setUserRole(resultSet.getInt("wu.user_role"));
+					IO.println(contestant.getUserName() + " " + contestant.getUserRole() + " " + contestant.getUserFirstName() + " " + contestant.getUserLastName());
 				} 
 			} catch (SQLException exception) {
 				exception.printStackTrace();
@@ -154,19 +194,15 @@ public class ContestantUtils {
 		} 
 		return contestant;
 	}
-	
-	public static Contestant getContestant(User user) {
-		Contestant contestant = getContestant(user.getUserId());
-		return contestant;
-	}
-	
+
 	public static ArrayList<Contestant> getContestants () {
-		ArrayList<Contestant> contestants = new ArrayList<Contestant>();
+		ArrayList<Contestant> contestants = new ArrayList<>();
 		conn = ConnectionUtils.openConnection();
 		String sql = "SELECT wu.user_id, wu.user_name, wu.user_email, wu.user_pass, wu.user_first_name, wu.user_last_name, wu.user_gender, wu.user_dob, wu.user_verified, wu.user_role, wu.user_joined_date, wc.contestant_id, wc.contestant_image_dir\r\n"
 				+ "FROM cms.wtaxy_user wu \r\n"
 				+ "	INNER JOIN cms.wtaxy_contestant wc ON ( wu.user_id = wc.user_id  ) ";
 		try {
+			assert conn != null;
 			prepStatement = conn.prepareStatement(sql);
 			resultSet = prepStatement.executeQuery();
 			while(resultSet.next()) {
