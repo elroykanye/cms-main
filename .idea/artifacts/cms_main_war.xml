@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="cms-main:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>cms-main</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="cms-itangi-kom-a-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="cms-main:war exploded" />
+    </root>
+  </artifact>
+</component>
