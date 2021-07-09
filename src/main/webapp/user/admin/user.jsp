@@ -65,7 +65,7 @@
                             </div>
                         </form>
                         <ul class="navbar-nav flex-nowrap ml-auto">
-                            <li class="nav-item dropdown no-arrow mx-1">
+                            <li styleClass="nav-item dropdown no-arrow mx-1">
                                 <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
                             </li>
                             <div class="d-none d-sm-block topbar-divider"></div>
