@@ -22,7 +22,7 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="../user/dashboard.html"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
+                    <li styleClass="nav-item"><a class="nav-link" href="../user/dashboard.html"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="../user/profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="../user/submissions.html"><i class="fa fa-table"></i><span>Submission</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="../login.html"><i class="fa fa-sign-in"></i><span>Sign Out</span></a></li>
@@ -34,7 +34,7 @@
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                    <div styleClass="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                         <form class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
                                 <div class="input-group-append"><button class="btn btn-primary py-0" type="button" style="background: var(--purple);"><i class="fas fa-search"></i></button></div>
@@ -46,7 +46,7 @@
                                     <div styleClass="dropdown-menu dropdown-menu-right dropdown-list animated--grow-in">
                                         <h6 class="dropdown-header">alerts center</h6><a class="dropdown-item d-flex align-items-center" href="#">
                                             <div class="mr-3">
-                                                <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
+                                                <div styleClass="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
                                             </div>
                                             <div><span class="small text-gray-500">December 12, 2019</span>
                                                 <p>A new monthly report is ready to download!</p>
@@ -55,7 +55,7 @@
                                             <div class="mr-3">
                                                 <div class="bg-success icon-circle"><i class="fas fa-donate text-white"></i></div>
                                             </div>
-                                            <div><span class="small text-gray-500">December 7, 2019</span>
+                                            <div><span styleClass="small text-gray-500">December 7, 2019</span>
                                                 <p>$290.29 has been deposited into your account!</p>
                                             </div>
                                         </a><a class="dropdown-item d-flex align-items-center" href="#">
