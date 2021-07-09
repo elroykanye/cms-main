@@ -38,9 +38,9 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                <ul styleClass="navbar-nav text-light" id="accordionSidebar">
-                   <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                   <li class="nav-item"><a class="nav-link" href="../profile.jsp"><i class="fas fa-user"></i><span>Profile</span></a></li>
-                   <li class="nav-item"><a class="nav-link" href="users.jsp"><i class="fa fa-users"></i><span>Users</span></a></li>
+                   <li styleClass="nav-item"><a styleClass="nav-link" href="dashboard.html"><i styleClass="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                   <li styleClass="nav-item"><a styleClass="nav-link" href="../profile.jsp"><i styleClass="fas fa-user"></i><span>Profile</span></a></li>
+                   <li styleClass="nav-item"><a styleClass="nav-link" href="users.jsp"><i styleClass="fa fa-users"></i><span>Users</span></a></li>
                    <li class="nav-item">
                        <div style="text-align: center;">
                            <form class="form-inline" style="padding:8px;" action="logout"><button class="btn btn-primary" type="submit" style="margin: auto;background: rgb(255,255,255);color: var(--purple);" name="action" value="Sign Out"><i class="fa fa-sign-out"></i>&nbsp;Sign Out</button></form>
@@ -88,10 +88,10 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
+                            <li styleClass="nav-item dropdown no-arrow mx-1">
                                 <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
                             </li>
-                            <div class="d-none d-sm-block topbar-divider"></div>
+                            <div styleClass="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
                                 <div styleClass="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small">{{username}}</span><img class="border rounded-circle img-profile" src="avatars/avatardeaedae1.jpeg" alt="{{profile-image}}"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in"><a class="dropdown-item" href="../user/profile.html"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a><a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity log</a>
