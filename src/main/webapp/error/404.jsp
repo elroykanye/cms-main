@@ -24,7 +24,10 @@
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li styleClass="nav-item"><a class="nav-link" href="../user/dashboard.html"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="../user/profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="../user/submissions.html"><i class="fa fa-table"></i><span>Submission</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="../user/submissions.html"><i class="fa fa-table"></i><span>Submission</span></a
+                    <li class="nav-item"><a class="nav-link" href="../login.html"><i class="fa fa-sign-in"></i><span>Sign Out</span></a></li>
+                    <li styleClass="nav-item"></li>
+
                     <li styleClass="nav-item"><a class="nav-link" href="../login.html"><i class="fa fa-sign-in"></i><span>Sign Out</span></a></li>
                     <li class="nav-item"></li>
                 </ul>

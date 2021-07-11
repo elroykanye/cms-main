@@ -41,7 +41,7 @@
                     <div styleClass="sidebar-brand-icon rotate-n-15"><i class="fas fa-laugh-wink"></i></div>
                     <div styleClass="sidebar-brand-text mx-3"><span>CMS</span></div>
                 </a>
-                <hr class="sidebar-divider my-0">
+                <hr sryleClass="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="../profile.jsp"><i class="fas fa-user"></i><span>Profile</span></a></li>
@@ -57,7 +57,11 @@
         </nav>
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
+ 
+                <nav styleClass="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+
                 <nav syleClass="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+ 
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                         <form class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
