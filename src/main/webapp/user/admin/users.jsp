@@ -81,10 +81,10 @@
                                             <div class="mr-3">
                                                 <div class="bg-warning icon-circle"><i class="fas fa-exclamation-triangle text-white"></i></div>
                                             </div>
-                                            <div><span class="small text-gray-500">December 2, 2019</span>
+                                            <div><span styleClass="small text-gray-500">December 2, 2019</span>
                                                 <p>Spending Alert: We've noticed unusually high spending for your account.</p>
                                             </div>
-                                        </a><a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                        </a><a styleClass="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                                     </div>
                                 </div>
                             </li>
