@@ -23,8 +23,13 @@
     <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
 
+ 
 <!-- initial Java Scripts here -->
 <%@
+
+<%-- initial Java Scripts here --%>
+<%
+ 
   ArrayList<User> users = UserUtils.getUsers();
   if(users == null) response.sendRedirect("../../error/404.jsp");
 %>

@@ -24,9 +24,12 @@
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li styleClass="nav-item"><a class="nav-link" href="../user/dashboard.html"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="../user/profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="../user/submissions.html"><i class="fa fa-table"></i><span>Submission</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="../user/submissions.html"><i class="fa fa-table"></i><span>Submission</span></a
                     <li class="nav-item"><a class="nav-link" href="../login.html"><i class="fa fa-sign-in"></i><span>Sign Out</span></a></li>
                     <li styleClass="nav-item"></li>
+
+                    <li styleClass="nav-item"><a class="nav-link" href="../login.html"><i class="fa fa-sign-in"></i><span>Sign Out</span></a></li>
+                    <li class="nav-item"></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
@@ -44,7 +47,7 @@
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><span class="badge badge-danger badge-counter">3+</span><i class="fas fa-bell fa-fw"></i></a>
                                     <div styleClass="dropdown-menu dropdown-menu-right dropdown-list animated--grow-in">
-                                        <h6 class="dropdown-header">alerts center</h6><a class="dropdown-item d-flex align-items-center" href="#">
+                                        <h6 styleClass="dropdown-header">alerts center</h6><a class="dropdown-item d-flex align-items-center" href="#">
                                             <div class="mr-3">
                                                 <div styleClass="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
                                             </div>
@@ -72,7 +75,7 @@
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
                             </li>
-                            <div class="d-none d-sm-block topbar-divider"></div>
+                            <div styleClass="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small">{{username}}</span><img class="border rounded-circle img-profile" src="avatars/avatardeaedae1.jpeg" alt="{{profile-image}}"></a>
                                     <div styleClass="dropdown-menu shadow dropdown-menu-right animated--grow-in"><a class="dropdown-item" href="../user/profile.html"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a><a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity log</a>
