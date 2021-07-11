@@ -26,7 +26,7 @@
                     <li class="nav-item"><a class="nav-link" href="../user/profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="../user/submissions.html"><i class="fa fa-table"></i><span>Submission</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="../login.html"><i class="fa fa-sign-in"></i><span>Sign Out</span></a></li>
-                    <li class="nav-item"></li>
+                    <li styleClass="nav-item"></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
