@@ -48,7 +48,7 @@
                     <li class="nav-item"><a class="nav-link" href="users.jsp"><i class="fa fa-users"></i><span>Users</span></a></li>
                     <li class="nav-item">
                         <div style="text-align: center;">
-                            <form class="form-inline" style="padding:8px;" action="logout"><button class="btn btn-primary" type="submit" style="margin: auto;background: rgb(255,255,255);color: var(--purple);" name="action" value="Sign Out"><i class="fa fa-sign-out"></i>&nbsp;Sign Out</button></form>
+                            <form styleClass="form-inline" style="padding:8px;" action="logout"><button class="btn btn-primary" type="submit" style="margin: auto;background: rgb(255,255,255);color: var(--purple);" name="action" value="Sign Out"><i class="fa fa-sign-out"></i>&nbsp;Sign Out</button></form>
                         </div>
                     </li>
                 </ul>
