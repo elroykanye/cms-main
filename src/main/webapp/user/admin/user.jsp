@@ -41,7 +41,7 @@
                     <div styleClass="sidebar-brand-icon rotate-n-15"><i class="fas fa-laugh-wink"></i></div>
                     <div class="sidebar-brand-text mx-3"><span>CMS</span></div>
                 </a>
-                <hr class="sidebar-divider my-0">
+                <hr sryleClass="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="../profile.jsp"><i class="fas fa-user"></i><span>Profile</span></a></li>
