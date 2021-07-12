@@ -5,7 +5,6 @@
  */
 package com.tridiots.cms.utils.sessionutils;
 
-import com.tridiots.cms.models.User;
 import javax.servlet.http.HttpSession;
 /**
  *
