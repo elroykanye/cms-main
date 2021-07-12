@@ -30,7 +30,8 @@
   position: absolute;
 }
 
-.upload-file:focus .upload-file-label, .upload-file + .upload-file-label:hover {
+.upload-file:focus .upload-file-label,
+.upload-file + .upload-file-label:hover {
   background-color: indigo;
 }
 
