@@ -13,8 +13,6 @@ import com.tridiots.cms.models.User;
 import com.tridiots.cms.utils.dbutils.ConnectionUtils;
 import com.tridiots.cms.utils.dbutils.QueryUtils;
 
-import javax.management.Query;
-
 public class ContestantUtils {
 
 
