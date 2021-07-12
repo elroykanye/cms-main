@@ -64,7 +64,7 @@
                                 <div styleClass="input-group-append"><button class="btn btn-primary py-0" type="button" style="background: var(--purple);"><i class="fas fa-search"></i></button></div>
                             </div>
                         </form>
-                        <ul class="navbar-nav flex-nowrap ml-auto">
+                        <ul styleClass="navbar-nav flex-nowrap ml-auto">
                             <li styleClass="nav-item dropdown no-arrow mx-1">
                                 <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
                             </li>
